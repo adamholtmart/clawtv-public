@@ -1,0 +1,33 @@
+{
+  "comment": "Hand-tuned M3U tvg-id -> EPG channel id aliases for stragglers the fuzzy matcher can't reach. Key is the normalized M3U tvg-id (lowercase, alphanumerics only). Value is the EPG channel id it should bind to.",
+  "aliases": {
+    "aandeus": "a&e.us",
+    "cbs2wcbsus": "cbsnewyork.us",
+    "abcwkbwus": "abcwkbwbuffalony.us",
+    "oxygentruecrimehdca2": "oxygentruecrime.us",
+    "tvlandeastus": "tvland.us",
+    "oxygenpacificfeed": "oxygenwest.us",
+    "fox29wutvus": "foxwutvbuffalony.us",
+    "nbc6wtvjus": "nbc6miami.us",
+    "hallmarkmoviesmysteriesus": "hallmarkmystery.us",
+    "usanetworkhdpacificus2": "usanetwork.us",
+    "tntpacificus": "tnt.us",
+    "ifchdus2": "ifc.us",
+    "courtus": "courttv.us",
+    "antennatvhdus": "antennatv.us",
+    "wgnwgn9us": "wgn9chicago.us",
+    "fusetvus": "fuse.us",
+    "vh1westus": "vh1.us",
+    "cw57wpsgus": "cwphiladelphia.us",
+    "pixlus2": "pixl.us",
+    "redbulldummyus": "redbulltv.us",
+    "my50wpwrus": "cw50chicago.us",
+    "my62ksmous": "cbskansascity.us",
+    "my24wvtvus": "cwwvtvmilwaukeewi.us",
+    "mntwbff2baltimoremdus": "cwbaltimore.us",
+    "mntkvcwdt2lasvegasnvus": "cwlasvegas.us",
+    "aljazeeraarabicnet": "my38boston.us",
+    "gaclivingus": "greatamericanfamily.us",
+    "gacfamilyus": "greatamericancountryfamily.us"
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "identifier" : "EBA7D8C4-9F2A-4F3B-A4F1-CLAWTV0001",
+  "nonRenewingSubscriptions" : [],
+  "products" : [
+    {
+      "displayPrice" : "9.99",
+      "familyShareable" : true,
+      "internalID" : "CLAWTV_UNLOCK_001",
+      "localizations" : [
+        {
+          "description" : "Unlock ClawTV permanently. Buy once, own forever — no subscription.",
+          "displayName" : "Unlock ClawTV",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "com.clawtv.player.unlock",
+      "referenceName" : "ClawTV Unlock",
+      "type" : "NonConsumable"
+    }
+  ],
+  "settings" : {
+    "_billingIssuesEnabled" : false,
+    "_failTransactionsEnabled" : false,
+    "_locale" : "en_US",
+    "_storefront" : "USA",
+    "_storeKitErrors" : []
+  },
+  "subscriptionGroups" : [],
+  "version" : {
+    "major" : 3,
+    "minor" : 0
+  }
+}
