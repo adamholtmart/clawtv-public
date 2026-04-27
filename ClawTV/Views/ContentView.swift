@@ -33,6 +33,19 @@ struct RootView: View {
     @EnvironmentObject var entitlement: EntitlementStore
 
     var body: some View {
+        #if DEBUG
+        if let screen = ScreenshotMode.screen {
+            screenshotRoute(for: screen)
+        } else {
+            normalRoute
+        }
+        #else
+        normalRoute
+        #endif
+    }
+
+    @ViewBuilder
+    private var normalRoute: some View {
         if !entitlement.hasAccess {
             PaywallView()
         } else if store.playlists.isEmpty {
@@ -41,6 +54,43 @@ struct RootView: View {
             MainShellView()
         }
     }
+
+    #if DEBUG
+    @ViewBuilder
+    private func screenshotRoute(for screen: ScreenshotMode.Screen) -> some View {
+        switch screen {
+        case .paywall:
+            PaywallView()
+        case .welcome, .attestation, .playlist, .epg, .done:
+            OnboardingView(initialStep: onboardingStep(from: screen))
+        case .home, .guide, .search, .favorites, .all, .settings:
+            MainShellView(initialTab: mainTab(from: screen))
+        }
+    }
+
+    private func onboardingStep(from screen: ScreenshotMode.Screen) -> OnboardingView.Step {
+        switch screen {
+        case .welcome: return .welcome
+        case .attestation: return .attestation
+        case .playlist: return .playlist
+        case .epg: return .epg
+        case .done: return .done
+        default: return .welcome
+        }
+    }
+
+    private func mainTab(from screen: ScreenshotMode.Screen) -> MainTab {
+        switch screen {
+        case .home: return .home
+        case .guide: return .guide
+        case .search: return .search
+        case .favorites: return .favorites
+        case .all: return .all
+        case .settings: return .settings
+        default: return .home
+        }
+    }
+    #endif
 }
 
 struct ContentView: View {
@@ -59,9 +109,13 @@ struct MainShellView: View {
     @EnvironmentObject var store: PlaylistStore
     @EnvironmentObject var epg: EPGService
     @EnvironmentObject var resolver: ChannelResolver
-    @State private var selectedTab: MainTab = .home
+    @State private var selectedTab: MainTab
     @State private var preloadKey: String = ""
     @State private var preparedCount: Int = 0
+
+    init(initialTab: MainTab = .home) {
+        _selectedTab = State(initialValue: initialTab)
+    }
 
     private var preloadInputKey: String {
         "\(epg.epgChannels.count)|\(store.channels.count)|\(resolver.learnedPicks.count)|\(resolver.recentEPGIds.count)"

@@ -16,6 +16,11 @@ struct ClawTVApp: App {
                 .environmentObject(entitlement)
                 .preferredColorScheme(.dark)
                 .task {
+                    #if DEBUG
+                    if ScreenshotMode.needsShell, store.playlists.isEmpty {
+                        await store.addPlaylist(name: "US Channels", url: ScreenshotMode.sampleListURL)
+                    }
+                    #endif
                     await store.refreshIfStale()
                 }
                 .task(id: store.channels.count) {

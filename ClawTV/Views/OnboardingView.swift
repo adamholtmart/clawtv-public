@@ -5,8 +5,8 @@ struct OnboardingView: View {
     @EnvironmentObject var epg: EPGService
     @EnvironmentObject var entitlement: EntitlementStore
 
-    @State private var step: Step = .welcome
-    @State private var attestationConfirmed = false
+    @State private var step: Step
+    @State private var attestationConfirmed: Bool
     @State private var playlistName = ""
     @State private var playlistURL = ""
     @State private var epgURL = ""
@@ -14,6 +14,17 @@ struct OnboardingView: View {
     @State private var addError: String?
 
     enum Step { case welcome, attestation, playlist, epg, done }
+
+    init(initialStep: Step = .welcome) {
+        _step = State(initialValue: initialStep)
+        // For screenshot mode: pre-tick attestation if we're past that step
+        let preTicked: Bool
+        switch initialStep {
+        case .welcome, .attestation: preTicked = false
+        default: preTicked = true
+        }
+        _attestationConfirmed = State(initialValue: preTicked)
+    }
 
     var body: some View {
         ZStack {

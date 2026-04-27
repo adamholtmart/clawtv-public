@@ -28,6 +28,7 @@
 		919DC22F7540D9932454A49E /* GuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9EA8F8618010064800E7D95 /* GuideView.swift */; };
 		9AD175AD6AC8AE91F7015917 /* PlaylistStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E12A3D166059382BEFCBD41 /* PlaylistStore.swift */; };
 		9B5D00D60D7638D61EE06FA1 /* EPGChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A5026A276A2AEACA687DDE /* EPGChannel.swift */; };
+		ABAA580C80F8BD01B0AB0C21 /* ScreenshotMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD88EDA4A50C2964D40DF3FB /* ScreenshotMode.swift */; };
 		AC33F4C71BD6EF57B984AA33 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D3FECE72537ADBDB6EEC89 /* SearchView.swift */; };
 		B7E9914904D51825DCF2FFF7 /* ChannelPickAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D135E8D6AE618BEA8FB3D9A /* ChannelPickAction.swift */; };
 		B80DFFDFBF503283D4936703 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DABB8E8B2B1E3BFBF9FF991 /* OnboardingView.swift */; };
@@ -89,6 +90,7 @@
 		B9EA8F8618010064800E7D95 /* GuideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideView.swift; sourceTree = "<group>"; };
 		D1FEBC832FC6871B892896DE /* FavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
 		D9681DD9FC67626A558DEFAB /* M3UParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = M3UParser.swift; sourceTree = "<group>"; };
+		DD88EDA4A50C2964D40DF3FB /* ScreenshotMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotMode.swift; sourceTree = "<group>"; };
 		E328B006D283401317F97156 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E51D78FDD862E59AA3C4D3FF /* ClawTV.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = ClawTV.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -130,6 +132,7 @@
 				50F886B26B83410D6C4B8257 /* Models */,
 				6DFF57A19A9716264D46B073 /* Resources */,
 				2B240225CE8D73CB938EAB16 /* Services */,
+				FEF83F93AA9DCD7FCB6DEE1A /* Support */,
 				687C6BB6B9B34CE5AE5B183D /* Views */,
 			);
 			path = ClawTV;
@@ -207,6 +210,14 @@
 				05ACEEE8BFEC3AB28C890A09 /* ClawTVApp.swift */,
 			);
 			path = App;
+			sourceTree = "<group>";
+		};
+		FEF83F93AA9DCD7FCB6DEE1A /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				DD88EDA4A50C2964D40DF3FB /* ScreenshotMode.swift */,
+			);
+			path = Support;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -310,6 +321,7 @@
 				210F894A2B93CF02A628645D /* PlayerView.swift in Sources */,
 				3E9ED19F4BB4EF46D8ADF955 /* Playlist.swift in Sources */,
 				9AD175AD6AC8AE91F7015917 /* PlaylistStore.swift in Sources */,
+				ABAA580C80F8BD01B0AB0C21 /* ScreenshotMode.swift in Sources */,
 				AC33F4C71BD6EF57B984AA33 /* SearchView.swift in Sources */,
 				BE62557F6330550DBB1CF435 /* SettingsView.swift in Sources */,
 			);

@@ -32,6 +32,7 @@ targets:
         UIUserInterfaceStyle: Dark
         NSAppTransportSecurity:
           NSAllowsArbitraryLoads: true
+        ITSAppUsesNonExemptEncryption: false
     entitlements:
       path: ClawTV/ClawTV.entitlements
     settings:
