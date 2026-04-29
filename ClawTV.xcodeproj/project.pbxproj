@@ -38,6 +38,7 @@
 		CD597D8EDBEF0EC496BEAC33 /* ChannelEPGIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDBD21185347CDD622F3E46 /* ChannelEPGIndex.swift */; };
 		DE70639000B996138D379C4A /* TVVLCKit.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = B75D800083DB8A3B1CC59833 /* TVVLCKit.xcframework */; };
 		E301FD84A5B467256F471EDB /* EntitlementStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DEBC65C90E65431CA439E7 /* EntitlementStore.swift */; };
+		8BEA79840F23C393B95ECADF /* CloudSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A72268FCCA4E8E833ED9C1 /* CloudSync.swift */; };
 		E5E2F4DE83E7C196127C168B /* ChannelCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4C81C9574BA87E2FD91129F /* ChannelCard.swift */; };
 		E75315474067EC1254DF2338 /* EPGProgramme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959E10C498055E92457F2742 /* EPGProgramme.swift */; };
 		F3CDEC60C65CC50EB528C7E1 /* PaywallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5694B769159598A114C6EB8D /* PaywallView.swift */; };
@@ -79,6 +80,7 @@
 		8FF93E2804D2A41EE1190869 /* EPGService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EPGService.swift; sourceTree = "<group>"; };
 		959E10C498055E92457F2742 /* EPGProgramme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EPGProgramme.swift; sourceTree = "<group>"; };
 		96DEBC65C90E65431CA439E7 /* EntitlementStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntitlementStore.swift; sourceTree = "<group>"; };
+		18A72268FCCA4E8E833ED9C1 /* CloudSync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudSync.swift; sourceTree = "<group>"; };
 		9E12A3D166059382BEFCBD41 /* PlaylistStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistStore.swift; sourceTree = "<group>"; };
 		A1E7AF10F234BDA45C030CB8 /* Playlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Playlist.swift; sourceTree = "<group>"; };
 		A4C81C9574BA87E2FD91129F /* ChannelCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCard.swift; sourceTree = "<group>"; };
@@ -112,6 +114,7 @@
 			children = (
 				2DDBD21185347CDD622F3E46 /* ChannelEPGIndex.swift */,
 				147A4A540226B3D417B0CA40 /* ChannelResolver.swift */,
+				18A72268FCCA4E8E833ED9C1 /* CloudSync.swift */,
 				96DEBC65C90E65431CA439E7 /* EntitlementStore.swift */,
 				8FF93E2804D2A41EE1190869 /* EPGService.swift */,
 				70DACA5157CECED23491944F /* GuideCurator.swift */,
@@ -302,6 +305,7 @@
 				B7E9914904D51825DCF2FFF7 /* ChannelPickAction.swift in Sources */,
 				55E7635A493340896A64C3B7 /* ChannelPickerSheet.swift in Sources */,
 				67386AE4475F4E57FC110950 /* ChannelResolver.swift in Sources */,
+				8BEA79840F23C393B95ECADF /* CloudSync.swift in Sources */,
 				5BF80754F436456207FF58BC /* ClawTVApp.swift in Sources */,
 				4D98734E99A0E8149154A599 /* ContentView.swift in Sources */,
 				9B5D00D60D7638D61EE06FA1 /* EPGChannel.swift in Sources */,

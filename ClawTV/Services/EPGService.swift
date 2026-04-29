@@ -29,6 +29,7 @@ final class EPGService: ObservableObject {
     @Published var epgURL: String {
         didSet {
             UserDefaults.standard.set(epgURL, forKey: epgURLKey)
+            CloudSync.shared.setString(epgURL, for: epgURLKey)
         }
     }
 
@@ -42,7 +43,8 @@ final class EPGService: ObservableObject {
     private var programmeLoadTask: Task<Void, Never>?
 
     init() {
-        self.epgURL = UserDefaults.standard.string(forKey: epgURLKey) ?? ""
+        self.epgURL = CloudSync.shared.string(for: epgURLKey)
+            ?? UserDefaults.standard.string(forKey: epgURLKey) ?? ""
         if let ts = UserDefaults.standard.object(forKey: lastRefreshKey) as? Date {
             self.lastRefresh = ts
         }

@@ -4,6 +4,7 @@ struct SettingsView: View {
     @EnvironmentObject var store: PlaylistStore
     @EnvironmentObject var epg: EPGService
     @EnvironmentObject var entitlement: EntitlementStore
+    @ObservedObject private var cloud = CloudSync.shared
     @State private var newURL: String = ""
     @State private var newName: String = ""
     @State private var isAdding = false
@@ -145,6 +146,14 @@ struct SettingsView: View {
 
                 Section("Playback") {
                     Toggle("Resume last channel on launch", isOn: $store.resumeOnLaunchEnabled)
+                }
+
+                Section {
+                    Toggle("Sync via iCloud", isOn: $cloud.isEnabled)
+                } header: {
+                    Text("iCloud")
+                } footer: {
+                    Text("Syncs playlists, EPG URL, favorites and preferences across all your Apple TVs signed into the same iCloud account. Stream contents are not uploaded.")
                 }
 
                 Section {
