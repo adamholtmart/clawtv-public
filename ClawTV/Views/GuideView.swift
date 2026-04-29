@@ -434,7 +434,7 @@ struct GuideView: View {
                     Color.clear.frame(width: w, height: rowHeight - 8)
                 case .programme(let prog, let w):
                     Button {
-                        openProgramme(epg: channel)
+                        openProgramme(epg: channel, programme: prog)
                     } label: {
                         ProgrammeCell(programme: prog, isLive: prog.isLive)
                             .frame(width: w, height: rowHeight - 8, alignment: .leading)
@@ -557,16 +557,43 @@ struct GuideView: View {
 
     // MARK: - Click handling
 
-    private func openProgramme(epg epgChannel: EPGChannel) {
+    private func openProgramme(epg epgChannel: EPGChannel, programme: EPGProgramme? = nil) {
         resolver.markOpened(epgId: epgChannel.id)
         switch resolver.resolve(epg: epgChannel, in: store.channels) {
         case .auto(let channel, _, _):
-            store.openChannel(channel, siblings: [], epgChannelId: epgChannel.id)
+            let target = catchupChannel(from: channel, programme: programme) ?? channel
+            store.openChannel(target, siblings: [], epgChannelId: epgChannel.id)
         case .picker(let candidates):
             pickerRequest = PickerRequest(epg: epgChannel, candidates: candidates)
         case .none:
             pickerRequest = PickerRequest(epg: epgChannel, candidates: [])
         }
+    }
+
+    /// If the programme already started and the channel supports catch-up,
+    /// rebuild the streamURL with the time-shift template so playback starts
+    /// from the programme start, not "live now".
+    private func catchupChannel(from channel: Channel, programme: EPGProgramme?) -> Channel? {
+        guard let programme,
+              let template = channel.catchupSource,
+              programme.start < Date() else { return nil }
+        let duration = max(60, programme.stop.timeIntervalSince(programme.start))
+        guard let catchupURL = RefreshScheduler.catchupURL(template: template,
+                                                           start: programme.start,
+                                                           duration: duration) else { return nil }
+        return Channel(
+            id: "\(channel.id)#catchup-\(Int(programme.start.timeIntervalSince1970))",
+            name: "\(channel.name) — \(programme.title)",
+            logoURL: channel.logoURL,
+            streamURL: catchupURL,
+            groupTitle: channel.groupTitle,
+            tvgId: channel.tvgId,
+            country: channel.country,
+            language: channel.language,
+            subtitleURL: channel.subtitleURL,
+            catchupSource: channel.catchupSource,
+            catchupDays: channel.catchupDays
+        )
     }
 
     private func handlePick(epg epgChannel: EPGChannel, channel: Channel, remember: Bool) {
