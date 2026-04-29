@@ -45,7 +45,10 @@ struct M3UParser {
                 groupTitle: meta.group ?? "Uncategorized",
                 tvgId: meta.tvgId,
                 country: meta.country,
-                language: meta.language
+                language: meta.language,
+                subtitleURL: meta.subtitles.flatMap { URL(string: $0) },
+                catchupSource: meta.catchupSource,
+                catchupDays: meta.catchupDays.flatMap { Int($0) }
             )
             channels.append(channel)
         }
@@ -61,6 +64,9 @@ struct M3UParser {
         var tvgId: String?
         var country: String?
         var language: String?
+        var subtitles: String?
+        var catchupSource: String?
+        var catchupDays: String?
     }
 
     private static func parseExtinf(_ line: String) -> ExtinfMeta {
@@ -77,6 +83,10 @@ struct M3UParser {
         meta.tvgId = attr(named: "tvg-id", in: attrsSection)
         meta.country = attr(named: "tvg-country", in: attrsSection)
         meta.language = attr(named: "tvg-language", in: attrsSection)
+        meta.subtitles = attr(named: "tvg-subtitles", in: attrsSection)
+            ?? attr(named: "subtitles", in: attrsSection)
+        meta.catchupSource = attr(named: "catchup-source", in: attrsSection)
+        meta.catchupDays = attr(named: "catchup-days", in: attrsSection)
         return meta
     }
 

@@ -76,6 +76,7 @@ struct PlayerView: View {
             Color.black.ignoresSafeArea()
             VLCPlayerView(
                 url: currentChannel.streamURL,
+                externalSubtitleURL: currentChannel.subtitleURL,
                 status: $status,
                 errorText: $errorText,
                 subtitleTracks: $subtitleTracks,
@@ -465,6 +466,7 @@ enum PlayerStatus {
 
 struct VLCPlayerView: UIViewRepresentable {
     let url: URL
+    let externalSubtitleURL: URL?
     @Binding var status: PlayerStatus
     @Binding var errorText: String?
     @Binding var subtitleTracks: [SubtitleTrack]
@@ -474,6 +476,7 @@ struct VLCPlayerView: UIViewRepresentable {
 
     init(
         url: URL,
+        externalSubtitleURL: URL? = nil,
         status: Binding<PlayerStatus>,
         errorText: Binding<String?>,
         subtitleTracks: Binding<[SubtitleTrack]> = .constant([]),
@@ -482,6 +485,7 @@ struct VLCPlayerView: UIViewRepresentable {
         paused: Bool = false
     ) {
         self.url = url
+        self.externalSubtitleURL = externalSubtitleURL
         self._status = status
         self._errorText = errorText
         self._subtitleTracks = subtitleTracks
@@ -519,6 +523,7 @@ struct VLCPlayerView: UIViewRepresentable {
         loadMedia(into: player, url: url)
         player.audio?.isMuted = muted
         player.play()
+        attachExternalSubtitle(player: player)
         context.coordinator.startStallWatchdog()
         return container
     }
@@ -531,6 +536,7 @@ struct VLCPlayerView: UIViewRepresentable {
             player.stop()
             loadMedia(into: player, url: url)
             player.play()
+            attachExternalSubtitle(player: player)
         }
         player.audio?.isMuted = muted
         if paused, player.isPlaying {
@@ -553,6 +559,11 @@ struct VLCPlayerView: UIViewRepresentable {
             "http-continuous": true
         ])
         player.media = media
+    }
+
+    private func attachExternalSubtitle(player: VLCMediaPlayer) {
+        guard let url = externalSubtitleURL else { return }
+        player.addPlaybackSlave(url, type: .subtitle, enforce: true)
     }
 
     static func dismantleUIView(_ uiView: UIView, coordinator: Coordinator) {
