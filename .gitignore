@@ -1,26 +1,5 @@
-# Xcode
-build/
-DerivedData/
-*.xcuserstate
-*.xcuserdatad/
-xcuserdata/
-*.xcodeproj/project.xcworkspace/xcuserdata/
-
-# macOS
+Archives/
 .DS_Store
-
-# Vendor binaries (fetched via scripts/fetch-vendor.sh)
-Vendor/TVVLCKit-binary/
-
-# StoreKit local test data
-*.storekit.json
-
-# Generated screenshots / temp output
-out/
-*.png.tmp
-
-# Secrets / signing
-*.p12
-*.mobileprovision
-.env
-.env.*
+DerivedData/
+xcuserdata/
+*.xcworkspace/xcuserdata/
