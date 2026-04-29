@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 77;
+	objectVersion = 63;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -65,7 +65,7 @@
 		1E612FC4CED060B0FDB4575B /* AllChannelsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllChannelsView.swift; sourceTree = "<group>"; };
 		2DABB8E8B2B1E3BFBF9FF991 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		2DDBD21185347CDD622F3E46 /* ChannelEPGIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelEPGIndex.swift; sourceTree = "<group>"; };
-		3B3E8554213A43D595326924 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		3B3E8554213A43D595326924 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		3EBA94E0024034B508C507BA /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
 		4B7E615822BC1150A6C81519 /* EPGOverrides.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = EPGOverrides.json; sourceTree = "<group>"; };
 		52A5026A276A2AEACA687DDE /* EPGChannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EPGChannel.swift; sourceTree = "<group>"; };
@@ -86,13 +86,13 @@
 		A985CD1056B5CB30CAAC8D44 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AFACB5FEF94CDF26B46A64EF /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		B75D800083DB8A3B1CC59833 /* TVVLCKit.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = TVVLCKit.xcframework; path = "Vendor/TVVLCKit-binary/TVVLCKit.xcframework"; sourceTree = "<group>"; };
-		B9DB138264144547BDC605B8 /* Configuration.storekit */ = {isa = PBXFileReference; path = Configuration.storekit; sourceTree = "<group>"; };
+		B9DB138264144547BDC605B8 /* Configuration.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Configuration.storekit; sourceTree = "<group>"; };
 		B9EA8F8618010064800E7D95 /* GuideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideView.swift; sourceTree = "<group>"; };
 		D1FEBC832FC6871B892896DE /* FavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
 		D9681DD9FC67626A558DEFAB /* M3UParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = M3UParser.swift; sourceTree = "<group>"; };
 		DD88EDA4A50C2964D40DF3FB /* ScreenshotMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotMode.swift; sourceTree = "<group>"; };
 		E328B006D283401317F97156 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		E51D78FDD862E59AA3C4D3FF /* ClawTV.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = ClawTV.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E51D78FDD862E59AA3C4D3FF /* ClawTV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClawTV.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -268,7 +268,6 @@
 			);
 			mainGroup = EF8FD811A5118DB2A67834CF;
 			minimizedProjectReferenceProxies = 1;
-			preferredProjectObjectVersion = 77;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -407,11 +406,14 @@
 					"\"Vendor/TVVLCKit-binary\"",
 				);
 				INFOPLIST_FILE = ClawTV/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ClawTV;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.clawtv.player;
 				SDKROOT = appletvos;
 				SUPPORTED_PLATFORMS = "appletvos appletvsimulator";
@@ -431,11 +433,14 @@
 					"\"Vendor/TVVLCKit-binary\"",
 				);
 				INFOPLIST_FILE = ClawTV/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ClawTV;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.clawtv.player;
 				SDKROOT = appletvos;
 				SUPPORTED_PLATFORMS = "appletvos appletvsimulator";
