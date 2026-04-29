@@ -6,6 +6,7 @@ struct ClawTVApp: App {
     @StateObject private var epg = EPGService()
     @StateObject private var resolver = ChannelResolver()
     @StateObject private var entitlement = EntitlementStore()
+    @StateObject private var parental = ParentalControls()
 
     var body: some Scene {
         WindowGroup {
@@ -14,6 +15,7 @@ struct ClawTVApp: App {
                 .environmentObject(epg)
                 .environmentObject(resolver)
                 .environmentObject(entitlement)
+                .environmentObject(parental)
                 .preferredColorScheme(.dark)
                 .task {
                     #if DEBUG

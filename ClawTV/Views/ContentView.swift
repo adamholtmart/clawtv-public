@@ -253,26 +253,51 @@ struct GuideLoadingView: View {
 struct PresentedScreenHost: View {
     @EnvironmentObject var store: PlaylistStore
     @EnvironmentObject var epg: EPGService
+    @EnvironmentObject var parental: ParentalControls
     @Binding var selectedTab: MainTab
 
     var body: some View {
         Group {
             switch store.presentedScreen {
             case .player(let context):
-                PlayerView(
-                    channel: context.channel,
-                    siblings: context.siblings,
-                    origin: context.origin,
-                    epgChannelId: context.epgChannelId,
-                    onSelectTab: { tab in
-                        store.presentedScreen = nil
-                        selectedTab = tab
+                if parental.isLocked(channel: context.channel) {
+                    PINEntryView(mode: .verify(prompt: "Locked: \(context.channel.name)")) { result in
+                        switch result {
+                        case .success:
+                            parental.unlockSession(channel: context.channel)
+                        case .cancelled:
+                            store.presentedScreen = nil
+                        }
                     }
-                )
-                .id("player-\(context.id.uuidString)")
-            case .multi:
-                MultiView(onExit: { store.closeMultiView() })
-                    .id("multi")
+                    .id("pin-player-\(context.id.uuidString)")
+                } else {
+                    PlayerView(
+                        channel: context.channel,
+                        siblings: context.siblings,
+                        origin: context.origin,
+                        epgChannelId: context.epgChannelId,
+                        onSelectTab: { tab in
+                            store.presentedScreen = nil
+                            selectedTab = tab
+                        }
+                    )
+                    .id("player-\(context.id.uuidString)")
+                }
+            case .multi(let seed):
+                if parental.isLocked(channel: seed) {
+                    PINEntryView(mode: .verify(prompt: "Locked: \(seed.name)")) { result in
+                        switch result {
+                        case .success:
+                            parental.unlockSession(channel: seed)
+                        case .cancelled:
+                            store.closeMultiView()
+                        }
+                    }
+                    .id("pin-multi")
+                } else {
+                    MultiView(onExit: { store.closeMultiView() })
+                        .id("multi")
+                }
             case .none:
                 Color.black
             }
