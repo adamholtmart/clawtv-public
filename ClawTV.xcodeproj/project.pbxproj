@@ -41,6 +41,10 @@
 		8BEA79840F23C393B95ECADF /* CloudSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A72268FCCA4E8E833ED9C1 /* CloudSync.swift */; };
 		72799428DEBC2D7E6FBCBF05 /* ParentalControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD719487DAFE404EC21354C0 /* ParentalControls.swift */; };
 		341C3FCA6835311996C56B24 /* RefreshScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351F00AA3334694A9E30E455 /* RefreshScheduler.swift */; };
+		BD1CB4081A915411F9CC6E3D /* XtreamModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B40DF94E63141CCA193703A /* XtreamModels.swift */; };
+		5DFC613B24C9CCDB42FDE3A5 /* XtreamService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61483DAC75E04B30BD49A285 /* XtreamService.swift */; };
+		AD2BB9C657B55E10017B043F /* MoviesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D265E5D0B95A3EDEA30B0C0D /* MoviesView.swift */; };
+		B8F197B49D1C33465C9DD3DB /* SeriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 168074666D714A2293C2BEC7 /* SeriesView.swift */; };
 		3731375AF2D08DC713DDCA10 /* PINEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88A22A898F853E8A3050BB3 /* PINEntryView.swift */; };
 		E5E2F4DE83E7C196127C168B /* ChannelCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4C81C9574BA87E2FD91129F /* ChannelCard.swift */; };
 		E75315474067EC1254DF2338 /* EPGProgramme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959E10C498055E92457F2742 /* EPGProgramme.swift */; };
@@ -86,6 +90,10 @@
 		18A72268FCCA4E8E833ED9C1 /* CloudSync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudSync.swift; sourceTree = "<group>"; };
 		CD719487DAFE404EC21354C0 /* ParentalControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentalControls.swift; sourceTree = "<group>"; };
 		351F00AA3334694A9E30E455 /* RefreshScheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshScheduler.swift; sourceTree = "<group>"; };
+		3B40DF94E63141CCA193703A /* XtreamModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XtreamModels.swift; sourceTree = "<group>"; };
+		61483DAC75E04B30BD49A285 /* XtreamService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XtreamService.swift; sourceTree = "<group>"; };
+		D265E5D0B95A3EDEA30B0C0D /* MoviesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesView.swift; sourceTree = "<group>"; };
+		168074666D714A2293C2BEC7 /* SeriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesView.swift; sourceTree = "<group>"; };
 		B88A22A898F853E8A3050BB3 /* PINEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PINEntryView.swift; sourceTree = "<group>"; };
 		9E12A3D166059382BEFCBD41 /* PlaylistStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistStore.swift; sourceTree = "<group>"; };
 		A1E7AF10F234BDA45C030CB8 /* Playlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Playlist.swift; sourceTree = "<group>"; };
@@ -124,6 +132,7 @@
 				96DEBC65C90E65431CA439E7 /* EntitlementStore.swift */,
 				CD719487DAFE404EC21354C0 /* ParentalControls.swift */,
 				351F00AA3334694A9E30E455 /* RefreshScheduler.swift */,
+				61483DAC75E04B30BD49A285 /* XtreamService.swift */,
 				8FF93E2804D2A41EE1190869 /* EPGService.swift */,
 				70DACA5157CECED23491944F /* GuideCurator.swift */,
 				D9681DD9FC67626A558DEFAB /* M3UParser.swift */,
@@ -156,6 +165,7 @@
 				52A5026A276A2AEACA687DDE /* EPGChannel.swift */,
 				959E10C498055E92457F2742 /* EPGProgramme.swift */,
 				A1E7AF10F234BDA45C030CB8 /* Playlist.swift */,
+				3B40DF94E63141CCA193703A /* XtreamModels.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -171,6 +181,8 @@
 				D1FEBC832FC6871B892896DE /* FavoritesView.swift */,
 				B9EA8F8618010064800E7D95 /* GuideView.swift */,
 				AFACB5FEF94CDF26B46A64EF /* HomeView.swift */,
+				D265E5D0B95A3EDEA30B0C0D /* MoviesView.swift */,
+				168074666D714A2293C2BEC7 /* SeriesView.swift */,
 				01A1D2A1ECCD8769B93DA401 /* MultiView.swift */,
 				8F68A5B6CD0081D182DC0834 /* MultiViewAddChannelView.swift */,
 				2DABB8E8B2B1E3BFBF9FF991 /* OnboardingView.swift */,
@@ -317,6 +329,10 @@
 				8BEA79840F23C393B95ECADF /* CloudSync.swift in Sources */,
 				72799428DEBC2D7E6FBCBF05 /* ParentalControls.swift in Sources */,
 				341C3FCA6835311996C56B24 /* RefreshScheduler.swift in Sources */,
+				BD1CB4081A915411F9CC6E3D /* XtreamModels.swift in Sources */,
+				5DFC613B24C9CCDB42FDE3A5 /* XtreamService.swift in Sources */,
+				AD2BB9C657B55E10017B043F /* MoviesView.swift in Sources */,
+				B8F197B49D1C33465C9DD3DB /* SeriesView.swift in Sources */,
 				3731375AF2D08DC713DDCA10 /* PINEntryView.swift in Sources */,
 				5BF80754F436456207FF58BC /* ClawTVApp.swift in Sources */,
 				4D98734E99A0E8149154A599 /* ContentView.swift in Sources */,

@@ -6,6 +6,7 @@ struct SettingsView: View {
     @EnvironmentObject var entitlement: EntitlementStore
     @EnvironmentObject var parental: ParentalControls
     @EnvironmentObject var scheduler: RefreshScheduler
+    @EnvironmentObject var xtream: XtreamService
     @ObservedObject private var cloud = CloudSync.shared
     @State private var newURL: String = ""
     @State private var newName: String = ""
@@ -121,6 +122,37 @@ struct SettingsView: View {
                     Text("Refresh")
                 } footer: {
                     Text("Playlists and EPG re-download on this cadence while the app is open. Manual disables auto-refresh.")
+                }
+
+                Section {
+                    TextField("Server URL", text: $xtream.credentials.server)
+                        .textContentType(.URL)
+                    TextField("Username", text: $xtream.credentials.username)
+                        .textContentType(.username)
+                    SecureField("Password", text: $xtream.credentials.password)
+                    if xtream.isConfigured {
+                        HStack {
+                            Button {
+                                Task {
+                                    await xtream.loadMovies()
+                                    await xtream.loadSeries()
+                                }
+                            } label: {
+                                Label("Refresh Catalog", systemImage: "arrow.clockwise")
+                            }
+                            Spacer()
+                            Text("\(xtream.movies.count) movies · \(xtream.series.count) series")
+                                .font(.caption)
+                                .foregroundStyle(.secondary)
+                        }
+                    }
+                    if let err = xtream.errorMessage {
+                        Text(err).font(.caption).foregroundStyle(.red)
+                    }
+                } header: {
+                    Text("Xtream Codes Account")
+                } footer: {
+                    Text("Optional. Add your Xtream server credentials to browse Movies and Series in their own tabs.")
                 }
 
                 Section("EPG (Program Guide)") {

@@ -8,6 +8,7 @@ struct ClawTVApp: App {
     @StateObject private var entitlement = EntitlementStore()
     @StateObject private var parental = ParentalControls()
     @StateObject private var scheduler = RefreshScheduler()
+    @StateObject private var xtream = XtreamService()
 
     var body: some Scene {
         WindowGroup {
@@ -18,6 +19,7 @@ struct ClawTVApp: App {
                 .environmentObject(entitlement)
                 .environmentObject(parental)
                 .environmentObject(scheduler)
+                .environmentObject(xtream)
                 .preferredColorScheme(.dark)
                 .task {
                     #if DEBUG

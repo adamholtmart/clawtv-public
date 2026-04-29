@@ -1,13 +1,15 @@
 import SwiftUI
 
 enum MainTab: String, CaseIterable, Identifiable, Hashable {
-    case home, guide, search, favorites, all, settings
+    case home, guide, movies, series, search, favorites, all, settings
     var id: String { rawValue }
 
     var title: String {
         switch self {
         case .home: return "Home"
         case .guide: return "Guide"
+        case .movies: return "Movies"
+        case .series: return "Series"
         case .search: return "Search"
         case .favorites: return "Favorites"
         case .all: return "All"
@@ -19,6 +21,8 @@ enum MainTab: String, CaseIterable, Identifiable, Hashable {
         switch self {
         case .home: return "house.fill"
         case .guide: return "calendar.day.timeline.left"
+        case .movies: return "film.stack"
+        case .series: return "rectangle.stack.fill"
         case .search: return "magnifyingglass"
         case .favorites: return "star.fill"
         case .all: return "square.grid.3x3.fill"
@@ -128,6 +132,14 @@ struct MainShellView: View {
                 .tag(MainTab.home)
 
             guideTab
+
+            MoviesView()
+                .tabItem { Label(MainTab.movies.title, systemImage: MainTab.movies.systemImage) }
+                .tag(MainTab.movies)
+
+            SeriesView()
+                .tabItem { Label(MainTab.series.title, systemImage: MainTab.series.systemImage) }
+                .tag(MainTab.series)
 
             SearchView()
                 .tabItem { Label(MainTab.search.title, systemImage: MainTab.search.systemImage) }
