@@ -5,6 +5,7 @@ struct SettingsView: View {
     @EnvironmentObject var epg: EPGService
     @EnvironmentObject var entitlement: EntitlementStore
     @EnvironmentObject var parental: ParentalControls
+    @EnvironmentObject var scheduler: RefreshScheduler
     @ObservedObject private var cloud = CloudSync.shared
     @State private var newURL: String = ""
     @State private var newName: String = ""
@@ -102,11 +103,24 @@ struct SettingsView: View {
                 }
 
                 Section {
+                    Picker("Auto-refresh", selection: $scheduler.interval) {
+                        ForEach(RefreshScheduler.Interval.allCases) { interval in
+                            Text(interval.label).tag(interval)
+                        }
+                    }
                     Button {
                         Task { await store.refresh() }
                     } label: {
                         Label("Refresh All Playlists", systemImage: "arrow.clockwise")
                     }
+                    if let last = scheduler.lastAutoRun {
+                        LabeledContent("Last auto-refresh",
+                                       value: last.formatted(date: .abbreviated, time: .shortened))
+                    }
+                } header: {
+                    Text("Refresh")
+                } footer: {
+                    Text("Playlists and EPG re-download on this cadence while the app is open. Manual disables auto-refresh.")
                 }
 
                 Section("EPG (Program Guide)") {

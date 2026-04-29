@@ -7,6 +7,7 @@ struct ClawTVApp: App {
     @StateObject private var resolver = ChannelResolver()
     @StateObject private var entitlement = EntitlementStore()
     @StateObject private var parental = ParentalControls()
+    @StateObject private var scheduler = RefreshScheduler()
 
     var body: some Scene {
         WindowGroup {
@@ -16,6 +17,7 @@ struct ClawTVApp: App {
                 .environmentObject(resolver)
                 .environmentObject(entitlement)
                 .environmentObject(parental)
+                .environmentObject(scheduler)
                 .preferredColorScheme(.dark)
                 .task {
                     #if DEBUG
@@ -23,6 +25,7 @@ struct ClawTVApp: App {
                         await store.addPlaylist(name: "US Channels", url: ScreenshotMode.sampleListURL)
                     }
                     #endif
+                    scheduler.bind(store: store, epg: epg)
                     await store.refreshIfStale()
                 }
                 .task(id: store.channels.count) {
