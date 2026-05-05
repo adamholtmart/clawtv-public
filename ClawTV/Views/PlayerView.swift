@@ -1,5 +1,9 @@
 import SwiftUI
+#if os(tvOS)
 import TVVLCKit
+#else
+import AVKit
+#endif
 
 struct SubtitleTrack: Identifiable, Equatable {
     let id: Int
@@ -26,7 +30,9 @@ struct PlayerView: View {
     @State private var subtitleTracks: [SubtitleTrack] = []
     @State private var activeSubtitleID: Int = -1
     @State private var infoHideTask: Task<Void, Never>?
+    #if os(tvOS)
     @FocusState private var playerFocused: Bool
+    #endif
 
     init(channel: Channel,
          siblings: [Channel] = [],
@@ -185,10 +191,14 @@ struct PlayerView: View {
             }
 
         }
+        #if os(tvOS)
         .focusable(true)
         .focused($playerFocused)
+        #endif
         .onAppear {
+            #if os(tvOS)
             playerFocused = true
+            #endif
             store.recordWatched(currentChannel)
             showInfoOverlay = true
             scheduleInfoHide()
@@ -199,6 +209,7 @@ struct PlayerView: View {
         .onLongPressGesture(minimumDuration: 0.7) {
             store.startMultiView(with: currentChannel)
         }
+        #if os(tvOS)
         .onMoveCommand { direction in
             switch direction {
             case .left: step(-1)
@@ -211,6 +222,7 @@ struct PlayerView: View {
                 showCCPicker.toggle()
             }
         }
+        #endif
         .onChange(of: status) { _, newValue in
             if newValue == .playing && !hasStartedPlaying {
                 hasStartedPlaying = true
@@ -232,6 +244,7 @@ struct PlayerView: View {
             showInfoOverlay = true
             scheduleInfoHide()
         }
+        #if os(tvOS)
         .onExitCommand {
             if showCCPicker {
                 withAnimation { showCCPicker = false }
@@ -244,6 +257,7 @@ struct PlayerView: View {
                 dismiss()
             }
         }
+        #endif
     }
 
     private func step(_ offset: Int) {
@@ -463,6 +477,7 @@ enum PlayerStatus {
     case loading, buffering, playing, error
 }
 
+#if os(tvOS)
 struct VLCPlayerView: UIViewRepresentable {
     let url: URL
     @Binding var status: PlayerStatus
@@ -678,3 +693,57 @@ struct VLCPlayerView: UIViewRepresentable {
         }
     }
 }
+
+#else // iOS
+
+/// iOS player: AVPlayer-based, with the same external API as VLCPlayerView.
+/// Full implementation in Phase 4 (AVPlayerView.swift). This stub keeps the
+/// build green while the rest of the UI layer is being adapted.
+struct VLCPlayerView: UIViewRepresentable {
+    let url: URL
+    @Binding var status: PlayerStatus
+    @Binding var errorText: String?
+    @Binding var subtitleTracks: [SubtitleTrack]
+    @Binding var activeSubtitleID: Int
+    var muted: Bool = false
+    var paused: Bool = false
+
+    init(
+        url: URL,
+        status: Binding<PlayerStatus>,
+        errorText: Binding<String?>,
+        subtitleTracks: Binding<[SubtitleTrack]> = .constant([]),
+        activeSubtitleID: Binding<Int> = .constant(-1),
+        muted: Bool = false,
+        paused: Bool = false
+    ) {
+        self.url = url
+        self._status = status
+        self._errorText = errorText
+        self._subtitleTracks = subtitleTracks
+        self._activeSubtitleID = activeSubtitleID
+        self.muted = muted
+        self.paused = paused
+    }
+
+    func makeUIView(context: Context) -> UIView {
+        let v = UIView()
+        v.backgroundColor = .black
+        let label = UILabel()
+        label.text = "Player — Phase 4"
+        label.textColor = .white
+        label.textAlignment = .center
+        label.translatesAutoresizingMaskIntoConstraints = false
+        v.addSubview(label)
+        NSLayoutConstraint.activate([
+            label.centerXAnchor.constraint(equalTo: v.centerXAnchor),
+            label.centerYAnchor.constraint(equalTo: v.centerYAnchor)
+        ])
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { status = .playing }
+        return v
+    }
+
+    func updateUIView(_ uiView: UIView, context: Context) {}
+}
+
+#endif

@@ -62,7 +62,9 @@ struct MultiViewAddChannelView: View {
             .padding(.top, 24)
             .padding(.trailing, 60)
         }
+        #if os(tvOS)
         .onExitCommand { onCancel() }
+        #endif
     }
 }
 

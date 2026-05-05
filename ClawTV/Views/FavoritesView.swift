@@ -19,7 +19,7 @@ struct FavoritesView: View {
                     }
                 } else {
                     ScrollView {
-                        LazyVGrid(columns: Array(repeating: GridItem(.fixed(260), spacing: 28), count: 5), spacing: 36) {
+                        LazyVGrid(columns: Layout.cardColumns, spacing: 36) {
                             ForEach(store.favoriteChannels) { channel in
                                 Button {
                                     if let pickAction { pickAction(channel) }
@@ -27,7 +27,11 @@ struct FavoritesView: View {
                                 } label: {
                                     ChannelCard(channel: channel)
                                 }
+                                #if os(tvOS)
                                 .buttonStyle(.card)
+                                #else
+                                .buttonStyle(.channelCard)
+                                #endif
                                 .contextMenu {
                                     Button {
                                         store.toggleFavorite(channel)
@@ -37,7 +41,7 @@ struct FavoritesView: View {
                                 }
                             }
                         }
-                        .padding(40)
+                        .padding(Layout.hPad)
                     }
                 }
             }

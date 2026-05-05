@@ -344,7 +344,11 @@ struct GuideView: View {
                           : Color.white.opacity(0.03))
             )
         }
+        #if os(tvOS)
         .buttonStyle(.card)
+        #else
+        .buttonStyle(.channelCard)
+        #endif
         .contextMenu {
             Button {
                 store.toggleFavoriteGroup(section.name)
@@ -439,7 +443,11 @@ struct GuideView: View {
                         ProgrammeCell(programme: prog, isLive: prog.isLive)
                             .frame(width: w, height: rowHeight - 8, alignment: .leading)
                     }
-                    .buttonStyle(.card)
+                    #if os(tvOS)
+        .buttonStyle(.card)
+        #else
+        .buttonStyle(.channelCard)
+        #endif
                 }
             }
             Spacer(minLength: 0)
@@ -464,7 +472,11 @@ struct GuideView: View {
             )
             .foregroundStyle(.secondary)
         }
+        #if os(tvOS)
         .buttonStyle(.card)
+        #else
+        .buttonStyle(.channelCard)
+        #endif
         .padding(.leading, 12)
         .padding(.top, 6)
         .padding(.trailing, 12)
@@ -539,7 +551,11 @@ struct GuideView: View {
                 RoundedRectangle(cornerRadius: 8).fill(Color.white.opacity(0.04))
             )
         }
+        #if os(tvOS)
         .buttonStyle(.card)
+        #else
+        .buttonStyle(.channelCard)
+        #endif
     }
 
     @ViewBuilder

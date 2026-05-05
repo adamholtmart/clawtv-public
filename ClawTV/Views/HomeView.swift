@@ -59,10 +59,10 @@ struct LocalsRow: View {
                         .font(.subheadline)
                         .foregroundStyle(.secondary)
                 }
-                .padding(.horizontal, 60)
+                .padding(.horizontal, Layout.hPad)
 
                 ScrollView(.horizontal, showsIndicators: false) {
-                    HStack(spacing: 32) {
+                    HStack(spacing: Layout.cardHSpacing) {
                         ForEach(locals) { channel in
                             Button {
                                 if let pickAction { pickAction(channel) }
@@ -70,7 +70,11 @@ struct LocalsRow: View {
                             } label: {
                                 ChannelCard(channel: channel)
                             }
+                            #if os(tvOS)
                             .buttonStyle(.card)
+                            #else
+                            .buttonStyle(.channelCard)
+                            #endif
                             .contextMenu {
                                 Button {
                                     store.toggleFavorite(channel)
@@ -84,7 +88,7 @@ struct LocalsRow: View {
                             }
                         }
                     }
-                    .padding(.horizontal, 60)
+                    .padding(.horizontal, Layout.hPad)
                     .padding(.vertical, 20)
                 }
             }
@@ -97,7 +101,7 @@ struct LocalsRow: View {
                         .font(.headline)
                         .foregroundStyle(.secondary)
                 }
-                .padding(.horizontal, 60)
+                .padding(.horizontal, Layout.hPad)
             }
         }
     }
@@ -108,14 +112,14 @@ struct CategoryGrid: View {
     let groups: [ChannelGroup]
     @EnvironmentObject var store: PlaylistStore
 
-    private let columns = Array(repeating: GridItem(.fixed(380), spacing: 24), count: 4)
+    private var columns: [GridItem] { Layout.categoryColumns }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
             Text(title)
                 .font(.title2)
                 .fontWeight(.semibold)
-                .padding(.horizontal, 60)
+                .padding(.horizontal, Layout.hPad)
 
             LazyVGrid(columns: columns, alignment: .leading, spacing: 24) {
                 ForEach(groups) { group in
@@ -124,7 +128,11 @@ struct CategoryGrid: View {
                     } label: {
                         CategoryTile(group: group, isFavorite: store.isFavoriteGroup(group.name))
                     }
+                    #if os(tvOS)
                     .buttonStyle(.card)
+                    #else
+                    .buttonStyle(.channelCard)
+                    #endif
                     .contextMenu {
                         Button {
                             store.toggleFavoriteGroup(group.name)
@@ -138,7 +146,7 @@ struct CategoryGrid: View {
                     }
                 }
             }
-            .padding(.horizontal, 60)
+            .padding(.horizontal, Layout.hPad)
             .padding(.vertical, 20)
         }
     }
@@ -178,7 +186,8 @@ struct CategoryTile: View {
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
             }
         }
-        .frame(width: 380, height: 110)
+        .frame(maxWidth: 380)
+    .frame(height: 110)
     }
 }
 
@@ -187,7 +196,7 @@ struct GroupChannelsView: View {
     @EnvironmentObject var store: PlaylistStore
     @Environment(\.channelPickAction) private var pickAction
 
-    private let columns = Array(repeating: GridItem(.fixed(260), spacing: 32), count: 5)
+    private var columns: [GridItem] { Layout.cardColumns }
 
     var body: some View {
         ScrollView {
@@ -199,7 +208,11 @@ struct GroupChannelsView: View {
                     } label: {
                         ChannelCard(channel: channel)
                     }
+                    #if os(tvOS)
                     .buttonStyle(.card)
+                    #else
+                    .buttonStyle(.channelCard)
+                    #endif
                     .contextMenu {
                         Button {
                             store.toggleFavorite(channel)
@@ -213,8 +226,8 @@ struct GroupChannelsView: View {
                     }
                 }
             }
-            .padding(.horizontal, 60)
-            .padding(.vertical, 40)
+            .padding(.horizontal, Layout.hPad)
+            .padding(.vertical, Layout.vPad)
         }
         .navigationTitle(group.name)
     }
@@ -231,10 +244,10 @@ struct ChannelRow: View {
             Text(title)
                 .font(.title2)
                 .fontWeight(.semibold)
-                .padding(.horizontal, 60)
+                .padding(.horizontal, Layout.hPad)
 
             ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: 32) {
+                HStack(spacing: Layout.cardHSpacing) {
                     ForEach(channels) { channel in
                         Button {
                             if let pickAction { pickAction(channel) }
@@ -242,7 +255,11 @@ struct ChannelRow: View {
                         } label: {
                             ChannelCard(channel: channel)
                         }
+                        #if os(tvOS)
                         .buttonStyle(.card)
+                        #else
+                        .buttonStyle(.channelCard)
+                        #endif
                         .contextMenu {
                             Button {
                                 store.toggleFavorite(channel)
@@ -256,7 +273,7 @@ struct ChannelRow: View {
                         }
                     }
                 }
-                .padding(.horizontal, 60)
+                .padding(.horizontal, Layout.hPad)
                 .padding(.vertical, 20)
             }
         }

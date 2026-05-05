@@ -88,8 +88,12 @@ struct SearchView: View {
                 .font(.system(size: 32, weight: .semibold))
                 .foregroundStyle(.secondary)
 
-            TextField("Search 77,000+ channels", text: $searchText)
+            TextField("Search channels", text: $searchText)
+                #if os(tvOS)
                 .font(.system(size: 36, weight: .semibold))
+                #else
+                .font(.system(size: 20, weight: .semibold))
+                #endif
                 .textFieldStyle(.plain)
                 .focused($searchFocused)
 
@@ -114,7 +118,7 @@ struct SearchView: View {
                     .frame(minWidth: 120, alignment: .trailing)
             }
         }
-        .padding(.horizontal, 60)
+        .padding(.horizontal, Layout.hPad)
         .padding(.top, 40)
         .padding(.bottom, 24)
     }
@@ -136,7 +140,7 @@ struct SearchView: View {
                     }
                 }
             }
-            .padding(.horizontal, 60)
+            .padding(.horizontal, Layout.hPad)
             .padding(.vertical, 14)
         }
     }
@@ -205,7 +209,7 @@ struct SearchView: View {
 
     private var resultsGrid: some View {
         ScrollView {
-            LazyVGrid(columns: Array(repeating: GridItem(.fixed(260), spacing: 32), count: 5), spacing: 36) {
+            LazyVGrid(columns: Layout.cardColumns, spacing: 36) {
                 ForEach(results) { channel in
                     Button {
                         if let pickAction { pickAction(channel) }
@@ -213,7 +217,11 @@ struct SearchView: View {
                     } label: {
                         ChannelCard(channel: channel)
                     }
+                    #if os(tvOS)
                     .buttonStyle(.card)
+                    #else
+                    .buttonStyle(.channelCard)
+                    #endif
                     .contextMenu {
                         Button {
                             store.toggleFavorite(channel)
@@ -227,7 +235,7 @@ struct SearchView: View {
                     }
                 }
             }
-            .padding(.horizontal, 60)
+            .padding(.horizontal, Layout.hPad)
             .padding(.vertical, 32)
         }
     }

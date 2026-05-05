@@ -50,7 +50,9 @@ struct MultiView: View {
                 onCancel: { pickerSlot = nil }
             )
         }
+        #if os(tvOS)
         .onExitCommand { onExit() }
+        #endif
         .onAppear {
             if let restored = store.consumeMultiViewSlots() {
                 slots = restored.slots
@@ -292,8 +294,10 @@ private struct MultiTile: View {
         )
         .scaleEffect(focused ? 1.02 : 1.0)
         .animation(.easeInOut(duration: 0.15), value: focused)
+        #if os(tvOS)
         .focusable(true)
         .focused($focused)
+        #endif
         .onTapGesture { onMakeAudio() }
         .onChange(of: focused) { _, newValue in
             if newValue {

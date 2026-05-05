@@ -23,7 +23,7 @@ struct ChannelPickerSheet: View {
                                 candidateButton(scored)
                             }
                         }
-                        .padding(.horizontal, 60)
+                        .padding(.horizontal, Layout.hPad)
                         .padding(.bottom, 40)
                     }
                 }
@@ -56,7 +56,7 @@ struct ChannelPickerSheet: View {
                 .foregroundStyle(.secondary)
                 .padding(.top, 4)
         }
-        .padding(.horizontal, 60)
+        .padding(.horizontal, Layout.hPad)
     }
 
     private var emptyState: some View {
@@ -123,7 +123,11 @@ struct ChannelPickerSheet: View {
                 RoundedRectangle(cornerRadius: 12).fill(Color.white.opacity(0.05))
             )
         }
+        #if os(tvOS)
         .buttonStyle(.card)
+        #else
+        .buttonStyle(.channelCard)
+        #endif
     }
 
     private func scoreBadge(_ score: Int) -> some View {
@@ -167,6 +171,6 @@ struct ChannelPickerSheet: View {
             Button("Cancel", action: onDismiss)
                 .buttonStyle(.bordered)
         }
-        .padding(.horizontal, 60)
+        .padding(.horizontal, Layout.hPad)
     }
 }
