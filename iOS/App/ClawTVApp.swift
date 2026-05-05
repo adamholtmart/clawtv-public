@@ -1,4 +1,5 @@
 import SwiftUI
+import AVFoundation
 
 @main
 struct ClawTVApp: App {
@@ -6,6 +7,11 @@ struct ClawTVApp: App {
     @StateObject private var epg = EPGService()
     @StateObject private var resolver = ChannelResolver()
     @StateObject private var entitlement = EntitlementStore()
+
+    init() {
+        try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .moviePlayback, options: [])
+        try? AVAudioSession.sharedInstance().setActive(true)
+    }
 
     var body: some Scene {
         WindowGroup {

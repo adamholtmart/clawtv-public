@@ -3,6 +3,7 @@ import SwiftUI
 import TVVLCKit
 #else
 import AVKit
+import MediaPlayer
 #endif
 
 struct SubtitleTrack: Identifiable, Equatable {
@@ -32,6 +33,9 @@ struct PlayerView: View {
     @State private var infoHideTask: Task<Void, Never>?
     #if os(tvOS)
     @FocusState private var playerFocused: Bool
+    #else
+    @State private var pipController: AVPictureInPictureController?
+    @State private var isPiPActive = false
     #endif
 
     init(channel: Channel,
@@ -77,18 +81,35 @@ struct PlayerView: View {
         navigableList.firstIndex(where: { $0.id == currentChannel.id })
     }
 
+    @ViewBuilder
+    private var playerView: some View {
+        #if os(tvOS)
+        VLCPlayerView(
+            url: currentChannel.streamURL,
+            status: $status,
+            errorText: $errorText,
+            subtitleTracks: $subtitleTracks,
+            activeSubtitleID: $activeSubtitleID
+        )
+        #else
+        VLCPlayerView(
+            url: currentChannel.streamURL,
+            status: $status,
+            errorText: $errorText,
+            subtitleTracks: $subtitleTracks,
+            activeSubtitleID: $activeSubtitleID,
+            onSetupPiP: { pipController = $0 }
+        )
+        #endif
+    }
+
     var body: some View {
         ZStack {
             Color.black.ignoresSafeArea()
-            VLCPlayerView(
-                url: currentChannel.streamURL,
-                status: $status,
-                errorText: $errorText,
-                subtitleTracks: $subtitleTracks,
-                activeSubtitleID: $activeSubtitleID
-            )
+            playerView
             .ignoresSafeArea()
 
+            #if os(tvOS)
             VStack {
                 HStack {
                     Spacer()
@@ -132,6 +153,51 @@ struct PlayerView: View {
                 }
             }
             .padding(40)
+            #else
+            // iOS overlay: hints at bottom, PiP button top-right, close on error
+            VStack(spacing: 0) {
+                HStack {
+                    Spacer()
+                    if AVPictureInPictureController.isPictureInPictureSupported(),
+                       let pip = pipController {
+                        Button {
+                            if isPiPActive { pip.stopPictureInPicture() }
+                            else { pip.startPictureInPicture() }
+                        } label: {
+                            Image(systemName: isPiPActive ? "pip.exit" : "pip.enter")
+                                .font(.system(size: 20))
+                                .foregroundStyle(.white)
+                                .padding(12)
+                                .background(.black.opacity(0.5), in: .circle)
+                        }
+                    }
+                }
+                Spacer()
+                if hintVisible {
+                    VStack(spacing: 6) {
+                        if siblings.count > 1 {
+                            Label("Swipe left / right  ·  change channel", systemImage: "arrow.left.arrow.right")
+                        }
+                        Label("Swipe down  ·  close", systemImage: "arrow.down")
+                        Label("Tap  ·  show info", systemImage: "info.circle")
+                    }
+                    .font(.footnote.weight(.medium))
+                    .foregroundStyle(.white.opacity(0.85))
+                    .padding(.horizontal, 20)
+                    .padding(.vertical, 10)
+                    .background(.black.opacity(0.55), in: .rect(cornerRadius: 12))
+                    .frame(maxWidth: .infinity)
+                    .transition(.opacity)
+                }
+                if status == .error {
+                    Button("Close") { dismiss() }
+                        .padding(.top, 12)
+                }
+            }
+            .padding(.horizontal, 20)
+            .padding(.vertical, 28)
+            .padding(.top, 8)
+            #endif
 
             if status == .error {
                 VStack(spacing: 12) {
@@ -198,6 +264,8 @@ struct PlayerView: View {
         .onAppear {
             #if os(tvOS)
             playerFocused = true
+            #else
+            updateNowPlaying()
             #endif
             store.recordWatched(currentChannel)
             showInfoOverlay = true
@@ -257,6 +325,26 @@ struct PlayerView: View {
                 dismiss()
             }
         }
+        #else
+        // Swipe right → previous channel, left → next channel, down → dismiss
+        .gesture(
+            DragGesture(minimumDistance: 40)
+                .onEnded { value in
+                    let h = value.translation.width
+                    let v = value.translation.height
+                    if abs(h) > abs(v) {
+                        if h > 0 { step(-1) } else { step(1) }
+                    } else if v > 60 {
+                        dismiss()
+                    }
+                }
+        )
+        .onAppear { setupRemoteCommands() }
+        .onChange(of: currentChannel.id) { _, _ in updateNowPlaying() }
+        .onChange(of: currentInfoNow?.title) { _, _ in updateNowPlaying() }
+        .onChange(of: pipController) { _, controller in
+            controller?.delegate = makePiPDelegate()
+        }
         #endif
     }
 
@@ -295,7 +383,64 @@ struct PlayerView: View {
             }
         }
     }
+
+    // MARK: - iOS platform features
+
+    #if os(iOS)
+    private func updateNowPlaying() {
+        var info: [String: Any] = [
+            MPMediaItemPropertyTitle: currentChannel.name,
+            MPMediaItemPropertyArtist: currentChannel.groupTitle,
+            MPNowPlayingInfoPropertyIsLiveStream: true,
+            MPNowPlayingInfoPropertyPlaybackRate: 1.0
+        ]
+        if let prog = currentInfoNow {
+            info[MPMediaItemPropertyTitle] = prog.title
+            info[MPMediaItemPropertyArtist] = currentChannel.name
+        }
+        MPNowPlayingInfoCenter.default().nowPlayingInfo = info
+    }
+
+    private func setupRemoteCommands() {
+        let center = MPRemoteCommandCenter.shared()
+        center.playCommand.isEnabled = false
+        center.pauseCommand.isEnabled = false
+        center.stopCommand.isEnabled = false
+        center.togglePlayPauseCommand.isEnabled = false
+
+        center.nextTrackCommand.isEnabled = siblings.count > 1
+        center.previousTrackCommand.isEnabled = siblings.count > 1
+
+        center.nextTrackCommand.removeTarget(nil)
+        center.previousTrackCommand.removeTarget(nil)
+
+        center.nextTrackCommand.addTarget { [weak store] _ in
+            DispatchQueue.main.async { self.step(1) }
+            return .success
+        }
+        center.previousTrackCommand.addTarget { [weak store] _ in
+            DispatchQueue.main.async { self.step(-1) }
+            return .success
+        }
+
+        updateNowPlaying()
+    }
+
+    private func makePiPDelegate() -> PiPDelegate {
+        let d = PiPDelegate { [self] active in isPiPActive = active }
+        return d
+    }
+    #endif
 }
+
+#if os(iOS)
+private class PiPDelegate: NSObject, AVPictureInPictureControllerDelegate {
+    let onActiveChange: (Bool) -> Void
+    init(_ onActiveChange: @escaping (Bool) -> Void) { self.onActiveChange = onActiveChange }
+    func pictureInPictureControllerDidStartPictureInPicture(_ controller: AVPictureInPictureController) { onActiveChange(true) }
+    func pictureInPictureControllerDidStopPictureInPicture(_ controller: AVPictureInPictureController) { onActiveChange(false) }
+}
+#endif
 
 struct InfoOverlay: View {
     let channel: Channel
@@ -704,6 +849,7 @@ struct VLCPlayerView: UIViewRepresentable {
     @Binding var activeSubtitleID: Int
     var muted: Bool = false
     var paused: Bool = false
+    var onSetupPiP: ((AVPictureInPictureController?) -> Void)?
 
     init(
         url: URL,
@@ -712,7 +858,8 @@ struct VLCPlayerView: UIViewRepresentable {
         subtitleTracks: Binding<[SubtitleTrack]> = .constant([]),
         activeSubtitleID: Binding<Int> = .constant(-1),
         muted: Bool = false,
-        paused: Bool = false
+        paused: Bool = false,
+        onSetupPiP: ((AVPictureInPictureController?) -> Void)? = nil
     ) {
         self.url = url
         self._status = status
@@ -721,6 +868,7 @@ struct VLCPlayerView: UIViewRepresentable {
         self._activeSubtitleID = activeSubtitleID
         self.muted = muted
         self.paused = paused
+        self.onSetupPiP = onSetupPiP
     }
 
     func makeUIView(context: Context) -> AVPlayerHostView {
@@ -731,6 +879,8 @@ struct VLCPlayerView: UIViewRepresentable {
         context.coordinator.attach(player: player, to: hostView, binding: $status, errorBinding: $errorText)
         player.isMuted = muted
         if !paused { player.play() }
+        hostView.setupPiP()
+        onSetupPiP?(hostView.pipController)
         return hostView
     }
 
@@ -744,6 +894,9 @@ struct VLCPlayerView: UIViewRepresentable {
             coord.attach(player: player, to: uiView, binding: $status, errorBinding: $errorText)
             player.isMuted = muted
             if !paused { player.play() }
+            // Recreate PiP controller when player changes
+            uiView.setupPiP()
+            onSetupPiP?(uiView.pipController)
             return
         }
 
@@ -834,10 +987,19 @@ struct VLCPlayerView: UIViewRepresentable {
 final class AVPlayerHostView: UIView {
     override class var layerClass: AnyClass { AVPlayerLayer.self }
     var playerLayer: AVPlayerLayer { layer as! AVPlayerLayer }
+    private(set) var pipController: AVPictureInPictureController?
+
     var player: AVPlayer? {
         get { playerLayer.player }
         set { playerLayer.player = newValue; playerLayer.videoGravity = .resizeAspect }
     }
+
+    func setupPiP() {
+        guard AVPictureInPictureController.isPictureInPictureSupported() else { return }
+        pipController = AVPictureInPictureController(playerLayer: playerLayer)
+        pipController?.canStartPictureInPictureAutomaticallyFromInline = true
+    }
+
     override func layoutSubviews() {
         super.layoutSubviews()
         playerLayer.frame = bounds
