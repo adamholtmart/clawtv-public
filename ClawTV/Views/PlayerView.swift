@@ -696,9 +696,6 @@ struct VLCPlayerView: UIViewRepresentable {
 
 #else // iOS
 
-/// iOS player: AVPlayer-based, with the same external API as VLCPlayerView.
-/// Full implementation in Phase 4 (AVPlayerView.swift). This stub keeps the
-/// build green while the rest of the UI layer is being adapted.
 struct VLCPlayerView: UIViewRepresentable {
     let url: URL
     @Binding var status: PlayerStatus
@@ -726,24 +723,125 @@ struct VLCPlayerView: UIViewRepresentable {
         self.paused = paused
     }
 
-    func makeUIView(context: Context) -> UIView {
-        let v = UIView()
-        v.backgroundColor = .black
-        let label = UILabel()
-        label.text = "Player — Phase 4"
-        label.textColor = .white
-        label.textAlignment = .center
-        label.translatesAutoresizingMaskIntoConstraints = false
-        v.addSubview(label)
-        NSLayoutConstraint.activate([
-            label.centerXAnchor.constraint(equalTo: v.centerXAnchor),
-            label.centerYAnchor.constraint(equalTo: v.centerYAnchor)
-        ])
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { status = .playing }
-        return v
+    func makeUIView(context: Context) -> AVPlayerHostView {
+        let hostView = AVPlayerHostView()
+        hostView.backgroundColor = .black
+        let player = AVPlayer(url: url)
+        hostView.player = player
+        context.coordinator.attach(player: player, to: hostView, binding: $status, errorBinding: $errorText)
+        player.isMuted = muted
+        if !paused { player.play() }
+        return hostView
     }
 
-    func updateUIView(_ uiView: UIView, context: Context) {}
+    func updateUIView(_ uiView: AVPlayerHostView, context: Context) {
+        let coord = context.coordinator
+
+        if coord.currentURL != url {
+            coord.currentURL = url
+            let player = AVPlayer(url: url)
+            uiView.player = player
+            coord.attach(player: player, to: uiView, binding: $status, errorBinding: $errorText)
+            player.isMuted = muted
+            if !paused { player.play() }
+            return
+        }
+
+        uiView.player?.isMuted = muted
+        if paused {
+            uiView.player?.pause()
+        } else if uiView.player?.timeControlStatus == .paused {
+            uiView.player?.play()
+        }
+    }
+
+    func makeCoordinator() -> Coordinator { Coordinator() }
+
+    final class Coordinator: NSObject {
+        var currentURL: URL?
+        private var statusObservation: NSKeyValueObservation?
+        private var rateObservation: NSKeyValueObservation?
+        private var errorObservation: NSKeyValueObservation?
+        private var itemObservation: NSKeyValueObservation?
+
+        func attach(player: AVPlayer, to view: AVPlayerHostView, binding: Binding<PlayerStatus>, errorBinding: Binding<String?>) {
+            currentURL = (player.currentItem?.asset as? AVURLAsset)?.url
+            statusObservation?.invalidate()
+            rateObservation?.invalidate()
+            errorObservation?.invalidate()
+            itemObservation?.invalidate()
+
+            binding.wrappedValue = .loading
+
+            itemObservation = player.observe(\.currentItem, options: [.new]) { [weak self] _, _ in
+                self?.observeItem(player: player, statusBinding: binding, errorBinding: errorBinding)
+            }
+            observeItem(player: player, statusBinding: binding, errorBinding: errorBinding)
+        }
+
+        private func observeItem(player: AVPlayer, statusBinding: Binding<PlayerStatus>, errorBinding: Binding<String?>) {
+            statusObservation?.invalidate()
+            errorObservation?.invalidate()
+            guard let item = player.currentItem else { return }
+
+            statusObservation = item.observe(\.status, options: [.new]) { [weak self] item, _ in
+                DispatchQueue.main.async {
+                    switch item.status {
+                    case .readyToPlay:
+                        statusBinding.wrappedValue = .playing
+                        errorBinding.wrappedValue = nil
+                    case .failed:
+                        statusBinding.wrappedValue = .error
+                        errorBinding.wrappedValue = item.error?.localizedDescription ?? "Playback failed"
+                    default:
+                        statusBinding.wrappedValue = .buffering
+                    }
+                }
+            }
+
+            errorObservation = player.observe(\.currentItem?.error, options: [.new]) { _, change in
+                if let err = change.newValue as? Error {
+                    DispatchQueue.main.async {
+                        statusBinding.wrappedValue = .error
+                        errorBinding.wrappedValue = err.localizedDescription
+                    }
+                }
+            }
+
+            // Trigger once for current state
+            DispatchQueue.main.async {
+                switch item.status {
+                case .readyToPlay:
+                    statusBinding.wrappedValue = .playing
+                case .failed:
+                    statusBinding.wrappedValue = .error
+                    errorBinding.wrappedValue = item.error?.localizedDescription ?? "Playback failed"
+                default:
+                    statusBinding.wrappedValue = .buffering
+                }
+            }
+        }
+
+        deinit {
+            statusObservation?.invalidate()
+            rateObservation?.invalidate()
+            errorObservation?.invalidate()
+            itemObservation?.invalidate()
+        }
+    }
+}
+
+final class AVPlayerHostView: UIView {
+    override class var layerClass: AnyClass { AVPlayerLayer.self }
+    var playerLayer: AVPlayerLayer { layer as! AVPlayerLayer }
+    var player: AVPlayer? {
+        get { playerLayer.player }
+        set { playerLayer.player = newValue; playerLayer.videoGravity = .resizeAspect }
+    }
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        playerLayer.frame = bounds
+    }
 }
 
 #endif
