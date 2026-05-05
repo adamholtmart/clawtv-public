@@ -4,6 +4,9 @@ struct GuideView: View {
     @EnvironmentObject var store: PlaylistStore
     @EnvironmentObject var epg: EPGService
     @EnvironmentObject var resolver: ChannelResolver
+    #if os(iOS)
+    @Environment(\.horizontalSizeClass) private var hSizeClass
+    #endif
     @State private var anchor: Date = Self.defaultAnchor()
     @State private var pickerRequest: PickerRequest?
     @State private var allowedEPGIds: Set<String> = []
@@ -94,7 +97,15 @@ struct GuideView: View {
             emptyState("No playlist channels matched the guide yet.",
                        system: "tv.slash")
         } else {
+            #if os(iOS)
+            if hSizeClass == .compact {
+                guideList
+            } else {
+                guideGrid
+            }
+            #else
             guideGrid
+            #endif
         }
     }
 
@@ -231,7 +242,7 @@ struct GuideView: View {
                 .foregroundStyle(.secondary)
 
         }
-        .padding(.horizontal, 60)
+        .padding(.horizontal, Layout.hPad)
     }
 
     @ViewBuilder
@@ -253,7 +264,7 @@ struct GuideView: View {
                 Capsule().strokeBorder(Color.white.opacity(0.12), lineWidth: 1)
             )
             .padding(.top, 24)
-            .padding(.trailing, 60)
+            .padding(.trailing, Layout.hPad)
             .transition(.opacity)
             .animation(.easeInOut(duration: 0.2), value: busyLabel)
         }
@@ -274,7 +285,7 @@ struct GuideView: View {
                         .foregroundStyle(.secondary)
                 }
             }
-            .padding(.horizontal, 60)
+            .padding(.horizontal, Layout.hPad)
         }
     }
 
@@ -284,6 +295,128 @@ struct GuideView: View {
         fmt.dateFormat = "EEE, MMM d"
         return fmt.string(from: anchor)
     }
+
+    // MARK: - Phone list layout
+
+    #if os(iOS)
+    private var guideList: some View {
+        List {
+            ForEach(sections) { section in
+                Section {
+                    if !collapsedGroups.contains(section.name) {
+                        ForEach(section.channels) { channel in
+                            channelListRow(for: channel)
+                                .listRowBackground(Color.white.opacity(0.04))
+                                .listRowSeparatorTint(Color.white.opacity(0.08))
+                        }
+                    }
+                } header: {
+                    Button {
+                        toggleSection(section.name)
+                    } label: {
+                        HStack(spacing: 8) {
+                            Image(systemName: collapsedGroups.contains(section.name) ? "chevron.right" : "chevron.down")
+                                .font(.system(size: 11, weight: .semibold))
+                                .foregroundStyle(.secondary)
+                            if section.isFavorite {
+                                Image(systemName: "star.fill")
+                                    .font(.system(size: 11))
+                                    .foregroundStyle(.yellow)
+                            }
+                            Text(section.name)
+                                .font(.system(size: 13, weight: .semibold))
+                                .foregroundStyle(.secondary)
+                            Text("\(section.channels.count)")
+                                .font(.system(size: 11))
+                                .foregroundStyle(.tertiary)
+                                .padding(.horizontal, 6)
+                                .padding(.vertical, 1)
+                                .background(Capsule().fill(Color.white.opacity(0.08)))
+                            Spacer(minLength: 0)
+                        }
+                        .textCase(nil)
+                        .contentShape(Rectangle())
+                    }
+                    .buttonStyle(.plain)
+                }
+            }
+        }
+        .listStyle(.plain)
+        .scrollContentBackground(.hidden)
+    }
+
+    private func channelListRow(for channel: EPGChannel) -> some View {
+        Button {
+            openProgramme(epg: channel)
+        } label: {
+            HStack(spacing: 12) {
+                Group {
+                    if let logo = channel.logoURL {
+                        AsyncImage(url: logo) { phase in
+                            switch phase {
+                            case .success(let img): img.resizable().scaledToFit()
+                            default: Image(systemName: "tv.fill").foregroundStyle(.tertiary)
+                            }
+                        }
+                    } else {
+                        Image(systemName: "tv.fill")
+                            .font(.system(size: 20))
+                            .foregroundStyle(.tertiary)
+                    }
+                }
+                .frame(width: 44, height: 44)
+                .clipShape(RoundedRectangle(cornerRadius: 6))
+
+                VStack(alignment: .leading, spacing: 4) {
+                    HStack(spacing: 6) {
+                        Text(channel.displayName)
+                            .font(.headline)
+                            .lineLimit(1)
+                        if resolver.hasSavedPick(for: channel) {
+                            Image(systemName: "checkmark.seal.fill")
+                                .font(.system(size: 11))
+                                .foregroundStyle(.green.opacity(0.8))
+                        }
+                    }
+                    if let prog = currentOrNextProgramme(for: channel) {
+                        HStack(spacing: 5) {
+                            if prog.isLive {
+                                Circle().fill(Color.red).frame(width: 5, height: 5)
+                                Text("LIVE")
+                                    .font(.system(size: 10, weight: .bold))
+                                    .foregroundStyle(.red)
+                            }
+                            Text(prog.title)
+                                .font(.subheadline)
+                                .foregroundStyle(.secondary)
+                                .lineLimit(1)
+                        }
+                    } else {
+                        Text("No schedule")
+                            .font(.subheadline)
+                            .foregroundStyle(.tertiary)
+                    }
+                }
+
+                Spacer(minLength: 0)
+                Image(systemName: "chevron.right")
+                    .font(.system(size: 12))
+                    .foregroundStyle(.tertiary)
+            }
+            .padding(.vertical, 4)
+            .contentShape(Rectangle())
+        }
+        .buttonStyle(.plain)
+    }
+
+    private func currentOrNextProgramme(for channel: EPGChannel) -> EPGProgramme? {
+        let progs = programmes(for: channel)
+        return progs.first { $0.start <= anchor && $0.stop > anchor }
+            ?? progs.min(by: { $0.start < $1.start })
+    }
+    #endif
+
+    // MARK: - Grid layout
 
     private var guideGrid: some View {
         // LazyVStack so tvOS only realizes rows currently in view + buffer.
@@ -307,8 +440,8 @@ struct GuideView: View {
                     }
                 }
             }
-            .padding(.horizontal, 60)
-            .padding(.bottom, 40)
+            .padding(.horizontal, Layout.hPad)
+            .padding(.bottom, Layout.vPad)
         }
 #if os(tvOS)
         .focusSection()

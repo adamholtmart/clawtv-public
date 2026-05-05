@@ -13,7 +13,7 @@ struct HomeView: View {
                             Text("Loading channels…")
                                 .foregroundStyle(.secondary)
                         }
-                        .padding(.horizontal, 60)
+                        .padding(.horizontal, Layout.hPad)
                     }
 
                     LocalsRow()
@@ -34,7 +34,7 @@ struct HomeView: View {
                         CategoryGrid(title: "Browse Categories", groups: store.sortedGroups)
                     }
                 }
-                .padding(.vertical, 40)
+                .padding(.vertical, Layout.vPad)
             }
         }
     }

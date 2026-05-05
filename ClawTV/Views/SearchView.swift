@@ -171,11 +171,11 @@ struct SearchView: View {
                     Text("Tip")
                         .font(.headline)
                         .foregroundStyle(.secondary)
-                        .padding(.horizontal, 60)
+                        .padding(.horizontal, Layout.hPad)
                     Text("Start typing to search across all \(store.channels.count) channels, or tap a category chip above to browse.")
                         .font(.title3)
                         .foregroundStyle(.secondary)
-                        .padding(.horizontal, 60)
+                        .padding(.horizontal, Layout.hPad)
                 }
             }
             .padding(.vertical, 32)
