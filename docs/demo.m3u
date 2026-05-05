@@ -1,0 +1,15 @@
+#EXTM3U
+#EXTINF:-1 tvg-id="NASA-TV" tvg-name="NASA TV" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/NASA_logo.svg/200px-NASA_logo.svg.png" group-title="News",NASA TV
+https://ntg1.akamaized.net/hls/live/1021693/NASA-NTV1-HLS/master.m3u8
+
+#EXTINF:-1 tvg-id="AlJazeeraEn" tvg-name="Al Jazeera English" tvg-logo="https://upload.wikimedia.org/wikipedia/en/thumb/f/f2/Aljazeera_eng.svg/200px-Aljazeera_eng.svg.png" group-title="News",Al Jazeera English
+https://live-hls-web-aje.getaj.net/AJE/01.m3u8
+
+#EXTINF:-1 tvg-id="France24En" tvg-name="France 24 English" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/France_24_logo.svg/200px-France_24_logo.svg.png" group-title="News",France 24 English
+https://static.france24.com/live/F24_EN_HI_HLS/live_web.m3u8
+
+#EXTINF:-1 tvg-id="DWEnglish" tvg-name="DW English" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Deutsche_Welle_symbol_2012.svg/200px-Deutsche_Welle_symbol_2012.svg.png" group-title="News",DW English
+https://dwamdstream102.akamaized.net/hls/live/2015525/dwstream102/index.m3u8
+
+#EXTINF:-1 tvg-id="CGTN" tvg-name="CGTN News" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/CGTN_logo_2016.svg/200px-CGTN_logo_2016.svg.png" group-title="News",CGTN News
+https://livenews-cgtn.hdlive.cctv.com/PLTV/88888888/224/3221226231/index.m3u8
