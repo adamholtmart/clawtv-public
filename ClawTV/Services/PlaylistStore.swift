@@ -29,9 +29,12 @@ final class PlaylistStore: ObservableObject {
         }
     }
 
+    @Published var guidePinnedGroups: Set<String> = []
+
     private let playlistsKey = "clawtv.playlists.v1"
     private let favoritesKey = "clawtv.favorites.v1"
     private let favoriteGroupsKey = "clawtv.favoriteGroups.v1"
+    private let guidePinnedGroupsKey = "clawtv.guidePinnedGroups.v1"
     private let recentsKey = "clawtv.recents.v1"
     private let lastRefreshKey = "clawtv.channels.lastRefresh.v1"
     private let resumeOnLaunchKey = "clawtv.resumeOnLaunch.v1"
@@ -277,6 +280,10 @@ final class PlaylistStore: ObservableObject {
            let decoded = try? JSONDecoder().decode(Set<String>.self, from: data) {
             favoriteGroups = decoded
         }
+        if let data = UserDefaults.standard.data(forKey: guidePinnedGroupsKey),
+           let decoded = try? JSONDecoder().decode(Set<String>.self, from: data) {
+            guidePinnedGroups = decoded
+        }
         if let data = UserDefaults.standard.data(forKey: recentsKey),
            let decoded = try? JSONDecoder().decode([String].self, from: data) {
             recentlyWatched = decoded
@@ -363,6 +370,13 @@ final class PlaylistStore: ObservableObject {
     private func persistFavorites() {
         if let data = try? JSONEncoder().encode(favorites) {
             UserDefaults.standard.set(data, forKey: favoritesKey)
+        }
+    }
+
+    func setGuidePinnedGroups(_ groups: Set<String>) {
+        guidePinnedGroups = groups
+        if let data = try? JSONEncoder().encode(groups) {
+            UserDefaults.standard.set(data, forKey: guidePinnedGroupsKey)
         }
     }
 

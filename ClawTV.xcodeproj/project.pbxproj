@@ -7,40 +7,86 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F2F41FF46716DD87473126C /* Playlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E7AF10F234BDA45C030CB8 /* Playlist.swift */; };
 		1262AFB9F10C6A832BCD6F68 /* AllChannelsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E612FC4CED060B0FDB4575B /* AllChannelsView.swift */; };
+		1579D4CBA33E5AA45659DCBE /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = DBF2ACE4D1C6E20B58A75B50 /* Localizable.xcstrings */; };
 		210F894A2B93CF02A628645D /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A992C706535A247084F61DA /* PlayerView.swift */; };
+		2B00554AB54E4CC07FA9D586 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A992C706535A247084F61DA /* PlayerView.swift */; };
+		2D7E7902392DFBE63EC96700 /* MultiViewAddChannelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F68A5B6CD0081D182DC0834 /* MultiViewAddChannelView.swift */; };
+		2FCCBF2A60325E1CDBC290BA /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83ABB2144AF75746C50403E0 /* SettingsView.swift */; };
 		31FC2398D5DE570C6CCC259D /* TVVLCKit.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B75D800083DB8A3B1CC59833 /* TVVLCKit.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		348C22D4DF1D9BB99B1DDB18 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFACB5FEF94CDF26B46A64EF /* HomeView.swift */; };
+		350BAC8C504732DC3D2D703E /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DABB8E8B2B1E3BFBF9FF991 /* OnboardingView.swift */; };
+		3CA2B1DFD9DB78B2B0770BD9 /* EPGChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A5026A276A2AEACA687DDE /* EPGChannel.swift */; };
+		3E3219240A0180BBBA0A8C8F /* ScreenshotMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD88EDA4A50C2964D40DF3FB /* ScreenshotMode.swift */; };
 		3E9ED19F4BB4EF46D8ADF955 /* Playlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E7AF10F234BDA45C030CB8 /* Playlist.swift */; };
+		44B06780805B07BC472A392C /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D3FECE72537ADBDB6EEC89 /* SearchView.swift */; };
 		4C164619EF363C5491DC6FF8 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 3B3E8554213A43D595326924 /* PrivacyInfo.xcprivacy */; };
+		4C899A933F1CE08E84F61312 /* GzipHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF117D5F0B55CE9AFD96C255 /* GzipHelper.swift */; };
 		4D98734E99A0E8149154A599 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E328B006D283401317F97156 /* ContentView.swift */; };
+		4E5851B1847E258CC764052C /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 3B3E8554213A43D595326924 /* PrivacyInfo.xcprivacy */; };
 		55E7635A493340896A64C3B7 /* ChannelPickerSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E6213861E9AF914A122B62 /* ChannelPickerSheet.swift */; };
+		55F3D84C7229DDD84829F240 /* ChannelCardButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D15FE711CEA2105512D12525 /* ChannelCardButtonStyle.swift */; };
 		567949B28C1812AA2E3FC050 /* Configuration.storekit in Resources */ = {isa = PBXBuildFile; fileRef = B9DB138264144547BDC605B8 /* Configuration.storekit */; };
+		574624D742E7B6D9E6F03912 /* MultiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A1D2A1ECCD8769B93DA401 /* MultiView.swift */; };
 		5BF80754F436456207FF58BC /* ClawTVApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05ACEEE8BFEC3AB28C890A09 /* ClawTVApp.swift */; };
 		5D3A2A4A08BC928EE909C639 /* EPGService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF93E2804D2A41EE1190869 /* EPGService.swift */; };
+		6391E0818182D3E5F8881DAC /* ChannelCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4C81C9574BA87E2FD91129F /* ChannelCard.swift */; };
+		63F6866F17DE5A82FAC79399 /* GuideSetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC26E5FE2023213F09E42757 /* GuideSetupView.swift */; };
+		64FC5354CBFCEE10ED81CCAD /* AllChannelsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E612FC4CED060B0FDB4575B /* AllChannelsView.swift */; };
+		668B5D4DF7208FAE6675483F /* ChannelEPGIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDBD21185347CDD622F3E46 /* ChannelEPGIndex.swift */; };
+		66A4FE2EF2EBFF7D8B52AA22 /* KeychainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1838A58410012AD8DBEC716C /* KeychainHelper.swift */; };
+		672CB9064D64BF4910A41ECB /* Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FE348554E2CB1DC04A6107 /* Layout.swift */; };
 		67386AE4475F4E57FC110950 /* ChannelResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147A4A540226B3D417B0CA40 /* ChannelResolver.swift */; };
 		67A6D15B8DAECF3D18AB6BFE /* MultiViewAddChannelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F68A5B6CD0081D182DC0834 /* MultiViewAddChannelView.swift */; };
 		6D5BDFA9B70FA92998CA271D /* GuideCurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DACA5157CECED23491944F /* GuideCurator.swift */; };
 		74CD2249F75B3F2BD34117C8 /* MultiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A1D2A1ECCD8769B93DA401 /* MultiView.swift */; };
+		7718A27C869F9D071AC0B903 /* EPGProgramme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959E10C498055E92457F2742 /* EPGProgramme.swift */; };
 		7802AF3E9E19421CBD1AB031 /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1FEBC832FC6871B892896DE /* FavoritesView.swift */; };
+		80D88AF9D0A6B308B81FA2EE /* ChannelResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147A4A540226B3D417B0CA40 /* ChannelResolver.swift */; };
+		86F73BD5ADEB14BC56DB63D3 /* GuideSetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC26E5FE2023213F09E42757 /* GuideSetupView.swift */; };
+		877A644612D61438F0CDE4DD /* EntitlementStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DEBC65C90E65431CA439E7 /* EntitlementStore.swift */; };
+		87B263C96382B1C14CD51302 /* GuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9EA8F8618010064800E7D95 /* GuideView.swift */; };
 		87BBB210346AC4EB27DE13EE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A985CD1056B5CB30CAAC8D44 /* Assets.xcassets */; };
+		8D295DFD9070DFCC89338C5B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E328B006D283401317F97156 /* ContentView.swift */; };
 		913E73848B75278C79174AF3 /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBA94E0024034B508C507BA /* Channel.swift */; };
 		919DC22F7540D9932454A49E /* GuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9EA8F8618010064800E7D95 /* GuideView.swift */; };
+		92850775B76240BACD8ACA5A /* ChannelCardButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D15FE711CEA2105512D12525 /* ChannelCardButtonStyle.swift */; };
+		95817F86901F08DB658F1510 /* PlaylistStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E12A3D166059382BEFCBD41 /* PlaylistStore.swift */; };
+		9775DFA335410913EC894A3E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B1C1996E5E6256399A1E0F7C /* Assets.xcassets */; };
+		991022424C7833E0A5F0042B /* ChannelPickerSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E6213861E9AF914A122B62 /* ChannelPickerSheet.swift */; };
 		9AD175AD6AC8AE91F7015917 /* PlaylistStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E12A3D166059382BEFCBD41 /* PlaylistStore.swift */; };
 		9B5D00D60D7638D61EE06FA1 /* EPGChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A5026A276A2AEACA687DDE /* EPGChannel.swift */; };
+		A53C512738DED9B874A8D154 /* Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FE348554E2CB1DC04A6107 /* Layout.swift */; };
 		ABAA580C80F8BD01B0AB0C21 /* ScreenshotMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD88EDA4A50C2964D40DF3FB /* ScreenshotMode.swift */; };
 		AC33F4C71BD6EF57B984AA33 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D3FECE72537ADBDB6EEC89 /* SearchView.swift */; };
+		AD3FE40671AA065F6655B477 /* GzipHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF117D5F0B55CE9AFD96C255 /* GzipHelper.swift */; };
 		B7E9914904D51825DCF2FFF7 /* ChannelPickAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D135E8D6AE618BEA8FB3D9A /* ChannelPickAction.swift */; };
 		B80DFFDFBF503283D4936703 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DABB8E8B2B1E3BFBF9FF991 /* OnboardingView.swift */; };
+		BDAB75459C811F160AFD9B85 /* PaywallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5694B769159598A114C6EB8D /* PaywallView.swift */; };
+		BE2D08E668C28E4F9C6961C3 /* PiPView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DBEE9461E8A323AA7E9307 /* PiPView.swift */; };
 		BE62557F6330550DBB1CF435 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83ABB2144AF75746C50403E0 /* SettingsView.swift */; };
 		C16E94AF31A9776E20FC42F1 /* EPGOverrides.json in Resources */ = {isa = PBXBuildFile; fileRef = 4B7E615822BC1150A6C81519 /* EPGOverrides.json */; };
+		C6DE53BE049F60E703F9BF0A /* M3UParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9681DD9FC67626A558DEFAB /* M3UParser.swift */; };
 		CBDA4C2E8FE960EF9DE7344B /* M3UParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9681DD9FC67626A558DEFAB /* M3UParser.swift */; };
+		CCEB73AC43372671A20BDED9 /* PiPView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DBEE9461E8A323AA7E9307 /* PiPView.swift */; };
 		CD597D8EDBEF0EC496BEAC33 /* ChannelEPGIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDBD21185347CDD622F3E46 /* ChannelEPGIndex.swift */; };
+		CD980369C248F5E21D253F05 /* EPGOverrides.json in Resources */ = {isa = PBXBuildFile; fileRef = 4B7E615822BC1150A6C81519 /* EPGOverrides.json */; };
+		D07A264F6BD738B51768E5FF /* ChannelPickAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D135E8D6AE618BEA8FB3D9A /* ChannelPickAction.swift */; };
+		D270F14863CCF668379BE0E2 /* GuideCurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DACA5157CECED23491944F /* GuideCurator.swift */; };
+		D3BBEB9129F70ADE9DE88FC3 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFACB5FEF94CDF26B46A64EF /* HomeView.swift */; };
+		D9B2F20C25AEB9CAA9D0ED58 /* KeychainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1838A58410012AD8DBEC716C /* KeychainHelper.swift */; };
 		DE70639000B996138D379C4A /* TVVLCKit.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = B75D800083DB8A3B1CC59833 /* TVVLCKit.xcframework */; };
 		E301FD84A5B467256F471EDB /* EntitlementStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DEBC65C90E65431CA439E7 /* EntitlementStore.swift */; };
 		E5E2F4DE83E7C196127C168B /* ChannelCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4C81C9574BA87E2FD91129F /* ChannelCard.swift */; };
+		E6A2E1A9F44CD35EE6DFB164 /* EPGService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF93E2804D2A41EE1190869 /* EPGService.swift */; };
 		E75315474067EC1254DF2338 /* EPGProgramme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959E10C498055E92457F2742 /* EPGProgramme.swift */; };
+		E95826AD4250DADFBD684ADC /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = DBF2ACE4D1C6E20B58A75B50 /* Localizable.xcstrings */; };
+		EB4A402A7A9BC27A578D71D3 /* ClawTVApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56BE79696A98DE637EE3A88E /* ClawTVApp.swift */; };
+		EE45F4E2A87953A7C90885E4 /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBA94E0024034B508C507BA /* Channel.swift */; };
+		F18E10EB029E05EE0E79F219 /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1FEBC832FC6871B892896DE /* FavoritesView.swift */; };
 		F3CDEC60C65CC50EB528C7E1 /* PaywallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5694B769159598A114C6EB8D /* PaywallView.swift */; };
+		FC1DAA481195C99D1C8274A4 /* Configuration.storekit in Resources */ = {isa = PBXBuildFile; fileRef = B9DB138264144547BDC605B8 /* Configuration.storekit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -60,8 +106,10 @@
 /* Begin PBXFileReference section */
 		01A1D2A1ECCD8769B93DA401 /* MultiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiView.swift; sourceTree = "<group>"; };
 		05ACEEE8BFEC3AB28C890A09 /* ClawTVApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClawTVApp.swift; sourceTree = "<group>"; };
+		12C4A2103DF606F7E94540F1 /* ClawTV-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ClawTV-Bridging-Header.h"; sourceTree = "<group>"; };
 		147A4A540226B3D417B0CA40 /* ChannelResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelResolver.swift; sourceTree = "<group>"; };
 		17E6213861E9AF914A122B62 /* ChannelPickerSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelPickerSheet.swift; sourceTree = "<group>"; };
+		1838A58410012AD8DBEC716C /* KeychainHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainHelper.swift; sourceTree = "<group>"; };
 		1E612FC4CED060B0FDB4575B /* AllChannelsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllChannelsView.swift; sourceTree = "<group>"; };
 		2DABB8E8B2B1E3BFBF9FF991 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		2DDBD21185347CDD622F3E46 /* ChannelEPGIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelEPGIndex.swift; sourceTree = "<group>"; };
@@ -69,12 +117,15 @@
 		3EBA94E0024034B508C507BA /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
 		4B7E615822BC1150A6C81519 /* EPGOverrides.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = EPGOverrides.json; sourceTree = "<group>"; };
 		52A5026A276A2AEACA687DDE /* EPGChannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EPGChannel.swift; sourceTree = "<group>"; };
+		54DBEE9461E8A323AA7E9307 /* PiPView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiPView.swift; sourceTree = "<group>"; };
 		5694B769159598A114C6EB8D /* PaywallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallView.swift; sourceTree = "<group>"; };
+		56BE79696A98DE637EE3A88E /* ClawTVApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClawTVApp.swift; sourceTree = "<group>"; };
 		66D3FECE72537ADBDB6EEC89 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		70DACA5157CECED23491944F /* GuideCurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideCurator.swift; sourceTree = "<group>"; };
 		7A992C706535A247084F61DA /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
 		7D135E8D6AE618BEA8FB3D9A /* ChannelPickAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelPickAction.swift; sourceTree = "<group>"; };
 		83ABB2144AF75746C50403E0 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		83E0B611372CFFBFA06076D9 /* ClawTV-iOS.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = "ClawTV-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F68A5B6CD0081D182DC0834 /* MultiViewAddChannelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiViewAddChannelView.swift; sourceTree = "<group>"; };
 		8FF93E2804D2A41EE1190869 /* EPGService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EPGService.swift; sourceTree = "<group>"; };
 		959E10C498055E92457F2742 /* EPGProgramme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EPGProgramme.swift; sourceTree = "<group>"; };
@@ -84,15 +135,22 @@
 		A4C81C9574BA87E2FD91129F /* ChannelCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCard.swift; sourceTree = "<group>"; };
 		A93265DCEAB66850728CF436 /* ClawTV.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ClawTV.entitlements; sourceTree = "<group>"; };
 		A985CD1056B5CB30CAAC8D44 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		AF117D5F0B55CE9AFD96C255 /* GzipHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GzipHelper.swift; sourceTree = "<group>"; };
 		AFACB5FEF94CDF26B46A64EF /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		B1C1996E5E6256399A1E0F7C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B75D800083DB8A3B1CC59833 /* TVVLCKit.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = TVVLCKit.xcframework; path = "Vendor/TVVLCKit-binary/TVVLCKit.xcframework"; sourceTree = "<group>"; };
 		B9DB138264144547BDC605B8 /* Configuration.storekit */ = {isa = PBXFileReference; path = Configuration.storekit; sourceTree = "<group>"; };
 		B9EA8F8618010064800E7D95 /* GuideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideView.swift; sourceTree = "<group>"; };
+		D15FE711CEA2105512D12525 /* ChannelCardButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCardButtonStyle.swift; sourceTree = "<group>"; };
 		D1FEBC832FC6871B892896DE /* FavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
 		D9681DD9FC67626A558DEFAB /* M3UParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = M3UParser.swift; sourceTree = "<group>"; };
+		DBF2ACE4D1C6E20B58A75B50 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		DD88EDA4A50C2964D40DF3FB /* ScreenshotMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotMode.swift; sourceTree = "<group>"; };
 		E328B006D283401317F97156 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		E46978668A6BBD2CD0C8A6AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		E51D78FDD862E59AA3C4D3FF /* ClawTV.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = ClawTV.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F8FE348554E2CB1DC04A6107 /* Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Layout.swift; sourceTree = "<group>"; };
+		FC26E5FE2023213F09E42757 /* GuideSetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideSetupView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +165,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2637F5F11FDB3341C5891F46 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				B1C1996E5E6256399A1E0F7C /* Assets.xcassets */,
+				E46978668A6BBD2CD0C8A6AD /* Info.plist */,
+				EE28821759A840BF9B050684 /* App */,
+			);
+			path = iOS;
+			sourceTree = "<group>";
+		};
 		2B240225CE8D73CB938EAB16 /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -154,16 +222,19 @@
 			children = (
 				1E612FC4CED060B0FDB4575B /* AllChannelsView.swift */,
 				A4C81C9574BA87E2FD91129F /* ChannelCard.swift */,
+				D15FE711CEA2105512D12525 /* ChannelCardButtonStyle.swift */,
 				7D135E8D6AE618BEA8FB3D9A /* ChannelPickAction.swift */,
 				17E6213861E9AF914A122B62 /* ChannelPickerSheet.swift */,
 				E328B006D283401317F97156 /* ContentView.swift */,
 				D1FEBC832FC6871B892896DE /* FavoritesView.swift */,
+				FC26E5FE2023213F09E42757 /* GuideSetupView.swift */,
 				B9EA8F8618010064800E7D95 /* GuideView.swift */,
 				AFACB5FEF94CDF26B46A64EF /* HomeView.swift */,
 				01A1D2A1ECCD8769B93DA401 /* MultiView.swift */,
 				8F68A5B6CD0081D182DC0834 /* MultiViewAddChannelView.swift */,
 				2DABB8E8B2B1E3BFBF9FF991 /* OnboardingView.swift */,
 				5694B769159598A114C6EB8D /* PaywallView.swift */,
+				54DBEE9461E8A323AA7E9307 /* PiPView.swift */,
 				7A992C706535A247084F61DA /* PlayerView.swift */,
 				66D3FECE72537ADBDB6EEC89 /* SearchView.swift */,
 				83ABB2144AF75746C50403E0 /* SettingsView.swift */,
@@ -175,6 +246,7 @@
 			isa = PBXGroup;
 			children = (
 				4B7E615822BC1150A6C81519 /* EPGOverrides.json */,
+				DBF2ACE4D1C6E20B58A75B50 /* Localizable.xcstrings */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -182,6 +254,7 @@
 		8009B3DF19AF92FBFBDA33B1 /* Products */ = {
 			isa = PBXGroup;
 			children = (
+				83E0B611372CFFBFA06076D9 /* ClawTV-iOS.app */,
 				E51D78FDD862E59AA3C4D3FF /* ClawTV.app */,
 			);
 			name = Products;
@@ -195,10 +268,19 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		EE28821759A840BF9B050684 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				56BE79696A98DE637EE3A88E /* ClawTVApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
 		EF8FD811A5118DB2A67834CF = {
 			isa = PBXGroup;
 			children = (
 				4BF2B7C9BCB6D91C7A84C169 /* ClawTV */,
+				2637F5F11FDB3341C5891F46 /* iOS */,
 				90CCBB1ADB77F73ED39F1060 /* Frameworks */,
 				8009B3DF19AF92FBFBDA33B1 /* Products */,
 			);
@@ -215,6 +297,10 @@
 		FEF83F93AA9DCD7FCB6DEE1A /* Support */ = {
 			isa = PBXGroup;
 			children = (
+				12C4A2103DF606F7E94540F1 /* ClawTV-Bridging-Header.h */,
+				AF117D5F0B55CE9AFD96C255 /* GzipHelper.swift */,
+				1838A58410012AD8DBEC716C /* KeychainHelper.swift */,
+				F8FE348554E2CB1DC04A6107 /* Layout.swift */,
 				DD88EDA4A50C2964D40DF3FB /* ScreenshotMode.swift */,
 			);
 			path = Support;
@@ -223,6 +309,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		0919C24B3A7E1092189B939C /* ClawTV-iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BA4E56F3855D46FD4AEA240E /* Build configuration list for PBXNativeTarget "ClawTV-iOS" */;
+			buildPhases = (
+				7706DD9BA02AED95E3A93DD3 /* Sources */,
+				B323216B0F5F471A2DACBFC1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "ClawTV-iOS";
+			packageProductDependencies = (
+			);
+			productName = "ClawTV-iOS";
+			productReference = 83E0B611372CFFBFA06076D9 /* ClawTV-iOS.app */;
+			productType = "com.apple.product-type.application";
+		};
 		9835F25A3513288100891DC6 /* ClawTV */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = C863E169961C4483B5F3E473 /* Build configuration list for PBXNativeTarget "ClawTV" */;
@@ -252,6 +356,10 @@
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
+					0919C24B3A7E1092189B939C = {
+						DevelopmentTeam = 6U9864P624;
+						ProvisioningStyle = Automatic;
+					};
 					9835F25A3513288100891DC6 = {
 						DevelopmentTeam = 6U9864P624;
 						ProvisioningStyle = Automatic;
@@ -264,7 +372,18 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				Base,
+				ar,
+				de,
 				en,
+				es,
+				fr,
+				it,
+				nl,
+				pl,
+				pt,
+				ro,
+				ru,
+				tr,
 			);
 			mainGroup = EF8FD811A5118DB2A67834CF;
 			minimizedProjectReferenceProxies = 1;
@@ -273,11 +392,24 @@
 			projectRoot = "";
 			targets = (
 				9835F25A3513288100891DC6 /* ClawTV */,
+				0919C24B3A7E1092189B939C /* ClawTV-iOS */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		B323216B0F5F471A2DACBFC1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9775DFA335410913EC894A3E /* Assets.xcassets in Resources */,
+				FC1DAA481195C99D1C8274A4 /* Configuration.storekit in Resources */,
+				CD980369C248F5E21D253F05 /* EPGOverrides.json in Resources */,
+				1579D4CBA33E5AA45659DCBE /* Localizable.xcstrings in Resources */,
+				4E5851B1847E258CC764052C /* PrivacyInfo.xcprivacy in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FE76DC36414E48D825B36EA5 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -285,6 +417,7 @@
 				87BBB210346AC4EB27DE13EE /* Assets.xcassets in Resources */,
 				567949B28C1812AA2E3FC050 /* Configuration.storekit in Resources */,
 				C16E94AF31A9776E20FC42F1 /* EPGOverrides.json in Resources */,
+				E95826AD4250DADFBD684ADC /* Localizable.xcstrings in Resources */,
 				4C164619EF363C5491DC6FF8 /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -299,6 +432,7 @@
 				1262AFB9F10C6A832BCD6F68 /* AllChannelsView.swift in Sources */,
 				913E73848B75278C79174AF3 /* Channel.swift in Sources */,
 				E5E2F4DE83E7C196127C168B /* ChannelCard.swift in Sources */,
+				55F3D84C7229DDD84829F240 /* ChannelCardButtonStyle.swift in Sources */,
 				CD597D8EDBEF0EC496BEAC33 /* ChannelEPGIndex.swift in Sources */,
 				B7E9914904D51825DCF2FFF7 /* ChannelPickAction.swift in Sources */,
 				55E7635A493340896A64C3B7 /* ChannelPickerSheet.swift in Sources */,
@@ -311,19 +445,65 @@
 				E301FD84A5B467256F471EDB /* EntitlementStore.swift in Sources */,
 				7802AF3E9E19421CBD1AB031 /* FavoritesView.swift in Sources */,
 				6D5BDFA9B70FA92998CA271D /* GuideCurator.swift in Sources */,
+				86F73BD5ADEB14BC56DB63D3 /* GuideSetupView.swift in Sources */,
 				919DC22F7540D9932454A49E /* GuideView.swift in Sources */,
+				AD3FE40671AA065F6655B477 /* GzipHelper.swift in Sources */,
 				348C22D4DF1D9BB99B1DDB18 /* HomeView.swift in Sources */,
+				D9B2F20C25AEB9CAA9D0ED58 /* KeychainHelper.swift in Sources */,
+				A53C512738DED9B874A8D154 /* Layout.swift in Sources */,
 				CBDA4C2E8FE960EF9DE7344B /* M3UParser.swift in Sources */,
 				74CD2249F75B3F2BD34117C8 /* MultiView.swift in Sources */,
 				67A6D15B8DAECF3D18AB6BFE /* MultiViewAddChannelView.swift in Sources */,
 				B80DFFDFBF503283D4936703 /* OnboardingView.swift in Sources */,
 				F3CDEC60C65CC50EB528C7E1 /* PaywallView.swift in Sources */,
+				CCEB73AC43372671A20BDED9 /* PiPView.swift in Sources */,
 				210F894A2B93CF02A628645D /* PlayerView.swift in Sources */,
 				3E9ED19F4BB4EF46D8ADF955 /* Playlist.swift in Sources */,
 				9AD175AD6AC8AE91F7015917 /* PlaylistStore.swift in Sources */,
 				ABAA580C80F8BD01B0AB0C21 /* ScreenshotMode.swift in Sources */,
 				AC33F4C71BD6EF57B984AA33 /* SearchView.swift in Sources */,
 				BE62557F6330550DBB1CF435 /* SettingsView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7706DD9BA02AED95E3A93DD3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				64FC5354CBFCEE10ED81CCAD /* AllChannelsView.swift in Sources */,
+				EE45F4E2A87953A7C90885E4 /* Channel.swift in Sources */,
+				6391E0818182D3E5F8881DAC /* ChannelCard.swift in Sources */,
+				92850775B76240BACD8ACA5A /* ChannelCardButtonStyle.swift in Sources */,
+				668B5D4DF7208FAE6675483F /* ChannelEPGIndex.swift in Sources */,
+				D07A264F6BD738B51768E5FF /* ChannelPickAction.swift in Sources */,
+				991022424C7833E0A5F0042B /* ChannelPickerSheet.swift in Sources */,
+				80D88AF9D0A6B308B81FA2EE /* ChannelResolver.swift in Sources */,
+				EB4A402A7A9BC27A578D71D3 /* ClawTVApp.swift in Sources */,
+				8D295DFD9070DFCC89338C5B /* ContentView.swift in Sources */,
+				3CA2B1DFD9DB78B2B0770BD9 /* EPGChannel.swift in Sources */,
+				7718A27C869F9D071AC0B903 /* EPGProgramme.swift in Sources */,
+				E6A2E1A9F44CD35EE6DFB164 /* EPGService.swift in Sources */,
+				877A644612D61438F0CDE4DD /* EntitlementStore.swift in Sources */,
+				F18E10EB029E05EE0E79F219 /* FavoritesView.swift in Sources */,
+				D270F14863CCF668379BE0E2 /* GuideCurator.swift in Sources */,
+				63F6866F17DE5A82FAC79399 /* GuideSetupView.swift in Sources */,
+				87B263C96382B1C14CD51302 /* GuideView.swift in Sources */,
+				4C899A933F1CE08E84F61312 /* GzipHelper.swift in Sources */,
+				D3BBEB9129F70ADE9DE88FC3 /* HomeView.swift in Sources */,
+				66A4FE2EF2EBFF7D8B52AA22 /* KeychainHelper.swift in Sources */,
+				672CB9064D64BF4910A41ECB /* Layout.swift in Sources */,
+				C6DE53BE049F60E703F9BF0A /* M3UParser.swift in Sources */,
+				574624D742E7B6D9E6F03912 /* MultiView.swift in Sources */,
+				2D7E7902392DFBE63EC96700 /* MultiViewAddChannelView.swift in Sources */,
+				350BAC8C504732DC3D2D703E /* OnboardingView.swift in Sources */,
+				BDAB75459C811F160AFD9B85 /* PaywallView.swift in Sources */,
+				BE2D08E668C28E4F9C6961C3 /* PiPView.swift in Sources */,
+				2B00554AB54E4CC07FA9D586 /* PlayerView.swift in Sources */,
+				0F2F41FF46716DD87473126C /* Playlist.swift in Sources */,
+				95817F86901F08DB658F1510 /* PlaylistStore.swift in Sources */,
+				3E3219240A0180BBBA0A8C8F /* ScreenshotMode.swift in Sources */,
+				44B06780805B07BC472A392C /* SearchView.swift in Sources */,
+				2FCCBF2A60325E1CDBC290BA /* SettingsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -387,12 +567,9 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = appletvos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.9;
-				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 17.0;
 			};
 			name = Debug;
 		};
@@ -415,10 +592,53 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.clawtv.player;
 				SDKROOT = appletvos;
 				SUPPORTED_PLATFORMS = "appletvos appletvsimulator";
+				SWIFT_OBJC_BRIDGING_HEADER = "ClawTV/Support/ClawTV-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 17.0;
 			};
 			name = Release;
+		};
+		B6402E96144BE642269B47EA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "";
+				ASSETCATALOG_COMPILER_SKIP_APP_STORE_DEPLOYMENT = YES;
+				CODE_SIGN_ENTITLEMENTS = ClawTV/ClawTV.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = iOS/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.clawtv.ios;
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_OBJC_BRIDGING_HEADER = "ClawTV/Support/ClawTV-Bridging-Header.h";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		BF672E452284311E5E2430D4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "";
+				ASSETCATALOG_COMPILER_SKIP_APP_STORE_DEPLOYMENT = YES;
+				CODE_SIGN_ENTITLEMENTS = ClawTV/ClawTV.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = iOS/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.clawtv.ios;
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_OBJC_BRIDGING_HEADER = "ClawTV/Support/ClawTV-Bridging-Header.h";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
 		};
 		CFC9D05BB92652AD9CBBDFD4 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -439,6 +659,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.clawtv.player;
 				SDKROOT = appletvos;
 				SUPPORTED_PLATFORMS = "appletvos appletvsimulator";
+				SWIFT_OBJC_BRIDGING_HEADER = "ClawTV/Support/ClawTV-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 17.0;
 			};
@@ -494,18 +715,24 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = appletvos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.9;
-				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 17.0;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		BA4E56F3855D46FD4AEA240E /* Build configuration list for PBXNativeTarget "ClawTV-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BF672E452284311E5E2430D4 /* Debug */,
+				B6402E96144BE642269B47EA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
 		C863E169961C4483B5F3E473 /* Build configuration list for PBXNativeTarget "ClawTV" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

@@ -294,11 +294,15 @@ struct GuideView: View {
                 timeHeaderRow
                 ForEach(sections) { section in
                     sectionHeader(section)
+#if os(tvOS)
                         .focusSection()
+#endif
                     if !collapsedGroups.contains(section.name) {
                         ForEach(section.channels) { channel in
                             channelRow(for: channel)
+#if os(tvOS)
                                 .focusSection()
+#endif
                         }
                     }
                 }
@@ -306,7 +310,9 @@ struct GuideView: View {
             .padding(.horizontal, 60)
             .padding(.bottom, 40)
         }
+#if os(tvOS)
         .focusSection()
+#endif
     }
 
     private func sectionHeader(_ section: GuideSection) -> some View {

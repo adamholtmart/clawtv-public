@@ -1,25 +1,23 @@
 name: ClawTV
 options:
   bundleIdPrefix: com.clawtv
-  deploymentTarget:
-    tvOS: "17.0"
   createIntermediateGroups: true
+
 settings:
   base:
     SWIFT_VERSION: "5.9"
     DEVELOPMENT_TEAM: "6U9864P624"
     CODE_SIGN_STYLE: Automatic
-    TARGETED_DEVICE_FAMILY: "3"
+
 targets:
   ClawTV:
     type: application
     platform: tvOS
+    deploymentTarget: "17.0"
     sources:
       - path: ClawTV
         excludes:
           - "Info.plist"
-    resources:
-      - path: ClawTV/Assets.xcassets
     dependencies:
       - framework: Vendor/TVVLCKit-binary/TVVLCKit.xcframework
         embed: true
@@ -38,8 +36,51 @@ targets:
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.clawtv.player
+        TARGETED_DEVICE_FAMILY: "3"
         INFOPLIST_KEY_UIRequiresFullScreen: true
         SUPPORTED_PLATFORMS: "appletvos appletvsimulator"
         SDKROOT: appletvos
         TVOS_DEPLOYMENT_TARGET: "17.0"
+        SWIFT_OBJC_BRIDGING_HEADER: "ClawTV/Support/ClawTV-Bridging-Header.h"
         ASSETCATALOG_COMPILER_APPICON_NAME: "App Icon & Top Shelf Image"
+
+  ClawTV-iOS:
+    type: application
+    platform: iOS
+    deploymentTarget: "17.0"
+    sources:
+      - path: ClawTV
+        excludes:
+          - "Info.plist"
+          - "App/ClawTVApp.swift"    # iOS entry point lives in iOS/App/
+          - "Assets.xcassets"        # iOS uses its own asset catalog
+      - path: iOS
+    info:
+      path: iOS/Info.plist
+      properties:
+        CFBundleDisplayName: ClawTV
+        UILaunchScreen: {}
+        UIUserInterfaceStyle: Dark
+        NSAppTransportSecurity:
+          NSAllowsArbitraryLoads: true
+        ITSAppUsesNonExemptEncryption: false
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
+          - UIInterfaceOrientationLandscapeLeft
+          - UIInterfaceOrientationLandscapeRight
+        "UISupportedInterfaceOrientations~ipad":
+          - UIInterfaceOrientationPortrait
+          - UIInterfaceOrientationLandscapeLeft
+          - UIInterfaceOrientationLandscapeRight
+    entitlements:
+      path: ClawTV/ClawTV.entitlements
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.clawtv.ios
+        TARGETED_DEVICE_FAMILY: "1,2"
+        SDKROOT: iphoneos
+        IPHONEOS_DEPLOYMENT_TARGET: "17.0"
+        SUPPORTED_PLATFORMS: "iphoneos iphonesimulator"
+        SWIFT_OBJC_BRIDGING_HEADER: "ClawTV/Support/ClawTV-Bridging-Header.h"
+        ASSETCATALOG_COMPILER_APPICON_NAME: ""
+        ASSETCATALOG_COMPILER_SKIP_APP_STORE_DEPLOYMENT: YES
