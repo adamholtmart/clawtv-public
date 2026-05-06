@@ -80,7 +80,7 @@ targets:
         com.apple.developer.ubiquity-kvstore-identifier: $(TeamIdentifierPrefix)com.clawtv
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: com.clawtv.ios
+        PRODUCT_BUNDLE_IDENTIFIER: com.clawtv.player
         TARGETED_DEVICE_FAMILY: "1,2"
         SDKROOT: iphoneos
         IPHONEOS_DEPLOYMENT_TARGET: "17.0"

@@ -617,7 +617,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.clawtv.ios;
+				PRODUCT_BUNDLE_IDENTIFIER = com.clawtv.player;
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "ClawTV/Support/ClawTV-Bridging-Header.h";
@@ -638,7 +638,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.clawtv.ios;
+				PRODUCT_BUNDLE_IDENTIFIER = com.clawtv.player;
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SWIFT_OBJC_BRIDGING_HEADER = "ClawTV/Support/ClawTV-Bridging-Header.h";
