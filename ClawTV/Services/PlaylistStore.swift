@@ -18,14 +18,14 @@ final class PlaylistStore: ObservableObject {
     @Published var multiViewAudioSlot: Int = 0
     @Published var resumeOnLaunchEnabled: Bool {
         didSet {
-            UserDefaults.standard.set(resumeOnLaunchEnabled, forKey: resumeOnLaunchKey)
+            CloudSync.shared.set(resumeOnLaunchEnabled, forKey: resumeOnLaunchKey)
         }
     }
     @Published var pendingResumeChannel: Channel?
     @Published var presentedScreen: PresentedScreen?
     @Published var localCity: String {
         didSet {
-            UserDefaults.standard.set(localCity, forKey: localCityKey)
+            CloudSync.shared.set(localCity, forKey: localCityKey)
         }
     }
 
@@ -44,10 +44,16 @@ final class PlaylistStore: ObservableObject {
     private let recentsCap = 20
 
     init() {
-        self.resumeOnLaunchEnabled = UserDefaults.standard.bool(forKey: resumeOnLaunchKey)
-        self.localCity = UserDefaults.standard.string(forKey: localCityKey) ?? ""
+        self.resumeOnLaunchEnabled = CloudSync.shared.bool(forKey: resumeOnLaunchKey)
+        self.localCity = CloudSync.shared.string(forKey: localCityKey) ?? ""
         load()
         computePendingResume()
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(handleCloudChange(_:)),
+            name: .cloudSyncDidChange,
+            object: nil
+        )
     }
 
     var localChannels: [Channel] {
@@ -268,23 +274,23 @@ final class PlaylistStore: ObservableObject {
     }
 
     private func load() {
-        if let data = UserDefaults.standard.data(forKey: playlistsKey),
+        if let data = CloudSync.shared.data(forKey: playlistsKey),
            let decoded = try? JSONDecoder().decode([Playlist].self, from: data) {
             playlists = decoded
         }
-        if let data = UserDefaults.standard.data(forKey: favoritesKey),
+        if let data = CloudSync.shared.data(forKey: favoritesKey),
            let decoded = try? JSONDecoder().decode(Set<String>.self, from: data) {
             favorites = decoded
         }
-        if let data = UserDefaults.standard.data(forKey: favoriteGroupsKey),
+        if let data = CloudSync.shared.data(forKey: favoriteGroupsKey),
            let decoded = try? JSONDecoder().decode(Set<String>.self, from: data) {
             favoriteGroups = decoded
         }
-        if let data = UserDefaults.standard.data(forKey: guidePinnedGroupsKey),
+        if let data = CloudSync.shared.data(forKey: guidePinnedGroupsKey),
            let decoded = try? JSONDecoder().decode(Set<String>.self, from: data) {
             guidePinnedGroups = decoded
         }
-        if let data = UserDefaults.standard.data(forKey: recentsKey),
+        if let data = CloudSync.shared.data(forKey: recentsKey),
            let decoded = try? JSONDecoder().decode([String].self, from: data) {
             recentlyWatched = decoded
         }
@@ -363,32 +369,80 @@ final class PlaylistStore: ObservableObject {
 
     private func persistPlaylists() {
         if let data = try? JSONEncoder().encode(playlists) {
-            UserDefaults.standard.set(data, forKey: playlistsKey)
+            CloudSync.shared.set(data, forKey: playlistsKey)
         }
     }
 
     private func persistFavorites() {
         if let data = try? JSONEncoder().encode(favorites) {
-            UserDefaults.standard.set(data, forKey: favoritesKey)
+            CloudSync.shared.set(data, forKey: favoritesKey)
         }
     }
 
     func setGuidePinnedGroups(_ groups: Set<String>) {
         guidePinnedGroups = groups
         if let data = try? JSONEncoder().encode(groups) {
-            UserDefaults.standard.set(data, forKey: guidePinnedGroupsKey)
+            CloudSync.shared.set(data, forKey: guidePinnedGroupsKey)
         }
     }
 
     private func persistFavoriteGroups() {
         if let data = try? JSONEncoder().encode(favoriteGroups) {
-            UserDefaults.standard.set(data, forKey: favoriteGroupsKey)
+            CloudSync.shared.set(data, forKey: favoriteGroupsKey)
         }
     }
 
     private func persistRecents() {
         if let data = try? JSONEncoder().encode(recentlyWatched) {
-            UserDefaults.standard.set(data, forKey: recentsKey)
+            CloudSync.shared.set(data, forKey: recentsKey)
+        }
+    }
+
+    // MARK: - iCloud incoming changes
+
+    @objc private func handleCloudChange(_ notification: Notification) {
+        guard let changed = notification.userInfo?["changedKeys"] as? [String] else { return }
+        Task { @MainActor in
+            var playlistsChanged = false
+            for key in changed {
+                switch key {
+                case self.playlistsKey:
+                    if let data = CloudSync.shared.data(forKey: key),
+                       let decoded = try? JSONDecoder().decode([Playlist].self, from: data) {
+                        self.playlists = decoded
+                        playlistsChanged = true
+                    }
+                case self.favoritesKey:
+                    if let data = CloudSync.shared.data(forKey: key),
+                       let decoded = try? JSONDecoder().decode(Set<String>.self, from: data) {
+                        self.favorites = decoded
+                    }
+                case self.favoriteGroupsKey:
+                    if let data = CloudSync.shared.data(forKey: key),
+                       let decoded = try? JSONDecoder().decode(Set<String>.self, from: data) {
+                        self.favoriteGroups = decoded
+                    }
+                case self.guidePinnedGroupsKey:
+                    if let data = CloudSync.shared.data(forKey: key),
+                       let decoded = try? JSONDecoder().decode(Set<String>.self, from: data) {
+                        self.guidePinnedGroups = decoded
+                    }
+                case self.recentsKey:
+                    if let data = CloudSync.shared.data(forKey: key),
+                       let decoded = try? JSONDecoder().decode([String].self, from: data) {
+                        self.recentlyWatched = decoded
+                    }
+                case self.resumeOnLaunchKey:
+                    self.resumeOnLaunchEnabled = CloudSync.shared.bool(forKey: key)
+                case self.localCityKey:
+                    self.localCity = CloudSync.shared.string(forKey: key) ?? ""
+                default:
+                    break
+                }
+            }
+            if playlistsChanged {
+                await self.refresh()
+            }
         }
     }
 }

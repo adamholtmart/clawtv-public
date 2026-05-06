@@ -40,6 +40,7 @@
 		67386AE4475F4E57FC110950 /* ChannelResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147A4A540226B3D417B0CA40 /* ChannelResolver.swift */; };
 		67A6D15B8DAECF3D18AB6BFE /* MultiViewAddChannelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F68A5B6CD0081D182DC0834 /* MultiViewAddChannelView.swift */; };
 		6D5BDFA9B70FA92998CA271D /* GuideCurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DACA5157CECED23491944F /* GuideCurator.swift */; };
+		7081F71F0898368413149CF6 /* CloudSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B06E9D08C8B86A1B8CF9087 /* CloudSync.swift */; };
 		74CD2249F75B3F2BD34117C8 /* MultiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A1D2A1ECCD8769B93DA401 /* MultiView.swift */; };
 		7718A27C869F9D071AC0B903 /* EPGProgramme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959E10C498055E92457F2742 /* EPGProgramme.swift */; };
 		7802AF3E9E19421CBD1AB031 /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1FEBC832FC6871B892896DE /* FavoritesView.swift */; };
@@ -55,6 +56,7 @@
 		95817F86901F08DB658F1510 /* PlaylistStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E12A3D166059382BEFCBD41 /* PlaylistStore.swift */; };
 		9775DFA335410913EC894A3E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B1C1996E5E6256399A1E0F7C /* Assets.xcassets */; };
 		991022424C7833E0A5F0042B /* ChannelPickerSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E6213861E9AF914A122B62 /* ChannelPickerSheet.swift */; };
+		996C1276AA28CD77E02FFBFE /* CloudSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B06E9D08C8B86A1B8CF9087 /* CloudSync.swift */; };
 		9AD175AD6AC8AE91F7015917 /* PlaylistStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E12A3D166059382BEFCBD41 /* PlaylistStore.swift */; };
 		9B5D00D60D7638D61EE06FA1 /* EPGChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A5026A276A2AEACA687DDE /* EPGChannel.swift */; };
 		A53C512738DED9B874A8D154 /* Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FE348554E2CB1DC04A6107 /* Layout.swift */; };
@@ -106,6 +108,7 @@
 /* Begin PBXFileReference section */
 		01A1D2A1ECCD8769B93DA401 /* MultiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiView.swift; sourceTree = "<group>"; };
 		05ACEEE8BFEC3AB28C890A09 /* ClawTVApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClawTVApp.swift; sourceTree = "<group>"; };
+		0B06E9D08C8B86A1B8CF9087 /* CloudSync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudSync.swift; sourceTree = "<group>"; };
 		12C4A2103DF606F7E94540F1 /* ClawTV-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ClawTV-Bridging-Header.h"; sourceTree = "<group>"; };
 		147A4A540226B3D417B0CA40 /* ChannelResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelResolver.swift; sourceTree = "<group>"; };
 		17E6213861E9AF914A122B62 /* ChannelPickerSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelPickerSheet.swift; sourceTree = "<group>"; };
@@ -180,6 +183,7 @@
 			children = (
 				2DDBD21185347CDD622F3E46 /* ChannelEPGIndex.swift */,
 				147A4A540226B3D417B0CA40 /* ChannelResolver.swift */,
+				0B06E9D08C8B86A1B8CF9087 /* CloudSync.swift */,
 				96DEBC65C90E65431CA439E7 /* EntitlementStore.swift */,
 				8FF93E2804D2A41EE1190869 /* EPGService.swift */,
 				70DACA5157CECED23491944F /* GuideCurator.swift */,
@@ -438,6 +442,7 @@
 				55E7635A493340896A64C3B7 /* ChannelPickerSheet.swift in Sources */,
 				67386AE4475F4E57FC110950 /* ChannelResolver.swift in Sources */,
 				5BF80754F436456207FF58BC /* ClawTVApp.swift in Sources */,
+				996C1276AA28CD77E02FFBFE /* CloudSync.swift in Sources */,
 				4D98734E99A0E8149154A599 /* ContentView.swift in Sources */,
 				9B5D00D60D7638D61EE06FA1 /* EPGChannel.swift in Sources */,
 				E75315474067EC1254DF2338 /* EPGProgramme.swift in Sources */,
@@ -479,6 +484,7 @@
 				991022424C7833E0A5F0042B /* ChannelPickerSheet.swift in Sources */,
 				80D88AF9D0A6B308B81FA2EE /* ChannelResolver.swift in Sources */,
 				EB4A402A7A9BC27A578D71D3 /* ClawTVApp.swift in Sources */,
+				7081F71F0898368413149CF6 /* CloudSync.swift in Sources */,
 				8D295DFD9070DFCC89338C5B /* ContentView.swift in Sources */,
 				3CA2B1DFD9DB78B2B0770BD9 /* EPGChannel.swift in Sources */,
 				7718A27C869F9D071AC0B903 /* EPGProgramme.swift in Sources */,
@@ -601,7 +607,7 @@
 		B6402E96144BE642269B47EA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_SKIP_APP_STORE_DEPLOYMENT = YES;
 				CODE_SIGN_ENTITLEMENTS = ClawTV/ClawTV.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -613,7 +619,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.clawtv.ios;
 				SDKROOT = iphoneos;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTED_PLATFORMS = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "ClawTV/Support/ClawTV-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -622,7 +628,7 @@
 		BF672E452284311E5E2430D4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_SKIP_APP_STORE_DEPLOYMENT = YES;
 				CODE_SIGN_ENTITLEMENTS = ClawTV/ClawTV.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";

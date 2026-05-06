@@ -33,6 +33,8 @@ targets:
         ITSAppUsesNonExemptEncryption: false
     entitlements:
       path: ClawTV/ClawTV.entitlements
+      properties:
+        com.apple.developer.ubiquity-kvstore-identifier: $(TeamIdentifierPrefix)com.clawtv
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.clawtv.player
@@ -74,6 +76,8 @@ targets:
           - UIInterfaceOrientationLandscapeRight
     entitlements:
       path: ClawTV/ClawTV.entitlements
+      properties:
+        com.apple.developer.ubiquity-kvstore-identifier: $(TeamIdentifierPrefix)com.clawtv
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.clawtv.ios
@@ -82,5 +86,22 @@ targets:
         IPHONEOS_DEPLOYMENT_TARGET: "17.0"
         SUPPORTED_PLATFORMS: "iphoneos iphonesimulator"
         SWIFT_OBJC_BRIDGING_HEADER: "ClawTV/Support/ClawTV-Bridging-Header.h"
-        ASSETCATALOG_COMPILER_APPICON_NAME: ""
+        ASSETCATALOG_COMPILER_APPICON_NAME: "AppIcon"
         ASSETCATALOG_COMPILER_SKIP_APP_STORE_DEPLOYMENT: YES
+      configs:
+        Release:
+          SUPPORTED_PLATFORMS: "iphoneos"
+
+schemes:
+  ClawTV:
+    build:
+      targets:
+        ClawTV: all
+    archive:
+      config: Release
+  ClawTV-iOS:
+    build:
+      targets:
+        ClawTV-iOS: all
+    archive:
+      config: Release
